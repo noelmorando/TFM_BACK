@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `teacherapp`.`usuarios` (
   `pxh` FLOAT NULL,
   `experiencia` INT NULL,
   `lat` FLOAT NULL DEFAULT NULL,
-  `long` FLOAT NULL DEFAULT NULL,
+  `lon` FLOAT NULL DEFAULT NULL,
   `activo` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `mail_UNIQUE` (`mail` ASC) )

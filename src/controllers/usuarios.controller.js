@@ -9,4 +9,14 @@ const getAllUsuarios = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios}
+const updateUsuario = async (req,res) => {
+    try {
+        const {usuarioId} = req.params
+        const [result] = await UsuarioModel.updateUsuarioById(usuarioId,req.body)
+        res.json(result[0])
+    } catch (error) {
+        res.json({fatal: error.message})
+    }
+}
+
+module.exports = {getAllUsuarios, updateUsuario}
