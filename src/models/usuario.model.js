@@ -19,7 +19,7 @@ const selectUsuarioById = (usuarioId) => {
 
 /**
  * 
- * @param {any} datos del nuevo usuario
+ * @param {any} datos datos del nuevo usuario
  * @returns todos los datos del usuario creado
  */
 
