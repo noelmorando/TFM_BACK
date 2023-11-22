@@ -7,6 +7,7 @@ const server = http.createServer(app)
 const PORT = process.env.PORT || 3000
 
 server.listen(PORT)
+//TODO: Cambiar los console.log por lineas que se agregan en un fichero log.
 server.on('listening',()=>{
     console.log(`Servidor escuchando en puerto ${PORT}`)
 })
