@@ -15,4 +15,8 @@ const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, 
     return db.query('update usuarios set nombre=?, apellidos=?, mail=?, pass=?, foto=?, tel=?, pxh=?, experiencia=?, lat=?, lon=?, activo=? where id=?',[nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo, id])
 }
 
-module.exports = { SelectAllUsuarios, updateUsuarioById }
+const deleteUsuarioById = (id) => {
+    return db.query("delete from usuarios where id=?", [id])
+}
+
+module.exports = { SelectAllUsuarios, updateUsuarioById,deleteUsuarioById }

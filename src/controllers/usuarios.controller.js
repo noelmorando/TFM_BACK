@@ -13,10 +13,20 @@ const updateUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
         const [result] = await UsuarioModel.updateUsuarioById(usuarioId,req.body)
-        res.json(result[0])
+        res.json(result)
     } catch (error) {
         res.json({fatal: error.message})
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario}
+const deleteUsuario = async (req,res) => {
+    try {
+        const {usuarioId} = req.params
+        const [result] = await UsuarioModel.deleteUsuarioById(usuarioId)
+        res.json(result)
+    } catch (error) {
+        res.json({fatal: error.message})
+    }
+}
+
+module.exports = {getAllUsuarios, updateUsuario,deleteUsuario}
