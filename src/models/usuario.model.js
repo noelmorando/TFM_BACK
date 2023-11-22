@@ -14,7 +14,11 @@ const SelectAllUsuarios = () => {
 const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo }) => {
     return db.query('update usuarios set nombre=?, apellidos=?, mail=?, pass=?, foto=?, tel=?, pxh=?, experiencia=?, lat=?, lon=?, activo=? where id=?',[nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo, id])
 }
-
+/**
+ * 
+ * @param {number} id id del usuario
+ * @returns elimina el usuario
+ */
 const deleteUsuarioById = (id) => {
     return db.query("delete from usuarios where id=?", [id])
 }
