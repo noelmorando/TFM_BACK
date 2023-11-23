@@ -1,6 +1,6 @@
 /**
- * 
- * @returns muestra todos los usuarios de la DB
+ * Recupera todos los usuarios de la DB.
+ * @returns any
  */
 const SelectAllUsuarios = () => {
     return db.query('select * from usuarios')
@@ -8,9 +8,9 @@ const SelectAllUsuarios = () => {
 
 
 /**
- * 
+ * Recupera los datos del usuario.
  * @param {number} id id del usuario
- * @returns datos del usuario 
+ * @returns any
  */
 
 const selectUsuarioById = (usuarioId) => {
@@ -18,18 +18,18 @@ const selectUsuarioById = (usuarioId) => {
 }
 
 /**
- * 
- * @param {number} usuarioId 
- * @returns devuelve todas las especialidades de un usuario
+ * Devuelve todas las especialidades de un usuario.
+ * @param {number} profesorId 
+ * @returns any
  */
-const selectEspecialidadesByUsuarioId = (usuarioId) => {
-    return db.query('SELECT e.* FROM usuarios_has_especialidades ue JOIN especialidades e ON ue.especialidades_id = e.id WHERE ue.profesor_id = ?',[usuarioId])
+const selectEspecialidadesByUsuarioId = (profesorId) => {
+    return db.query('SELECT e.* FROM usuarios_has_especialidades ue JOIN especialidades e ON ue.especialidades_id = e.id WHERE ue.profesor_id = ?',[profesorId])
 }
 
 /**
- * 
+ * Crea un nuevo usuario.
  * @param {any} datos datos del nuevo usuario
- * @returns todos los datos del usuario creado
+ * @returns any
  */
 
 const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
@@ -40,10 +40,10 @@ const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
 }
 
 /**
- * 
+ * Actualiza los datos del usuario.
  * @param {number} id id del usuario
  * @param {any} param1 datos del usuario
- * @returns datos del usuario modificados
+ * @returns any
  */
 const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo }) => {
     return db.query('update usuarios set nombre=?, apellidos=?, mail=?, pass=?, foto=?, tel=?, pxh=?, experiencia=?, lat=?, lon=?, activo=? where id=?',[nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo, id])
@@ -51,9 +51,9 @@ const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, 
 
 
 /**
- * 
+ * Elimina el usuario.
  * @param {number} id id del usuario
- * @returns elimina el usuario
+ * @returns any
  */
 const deleteUsuarioById = (id) => {
     return db.query("delete from usuarios where id=?", [id])

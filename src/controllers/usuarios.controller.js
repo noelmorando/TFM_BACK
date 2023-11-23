@@ -27,15 +27,15 @@ const getUsuarioById = async (req, res) => {
     }
 }
 /**
- * Recupera las especialidades de un usuario cuyo Id es usuarioId.
+ * Recupera las especialidades de un profesor cuyo Id es profesorId.
  * @param {any} req 
  * @param {any} res 
  */
-const  getEspecialidadByUsuarioId = async (req,res) => {
+const  getEspecialidadByProfesorId = async (req,res) => {
     try {
-        const {usuarioId} = req.params
-        const [result] = await UsuarioModel.selectEspecialidadesByUsuarioId(usuarioId)
-        res.json(result[0])
+        const {profesorId} = req.params
+        const [result] = await UsuarioModel.selectEspecialidadesByUsuarioId(profesorId)
+        res.json(result)
     } catch (error) {
         res.json({fatal: error.message})
     }
@@ -84,4 +84,4 @@ const deleteUsuario = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByUsuarioId}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId}
