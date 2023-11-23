@@ -81,9 +81,9 @@ COLLATE = utf8mb4_unicode_ci;
 -- Table `teacherapp`.`puntuaciones`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teacherapp`.`puntuaciones` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL DEFAULT (DATE(CURRENT_TIMESTAMP)),
   `puntuacion` INT NOT NULL,
   `comentarios` LONGTEXT NULL,
@@ -109,9 +109,9 @@ COLLATE = utf8mb4_unicode_ci;
 -- Table `teacherapp`.`clases`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teacherapp`.`clases` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` VARCHAR(10) NOT NULL,
   INDEX `fk_usuarios_has_usuarios_usuarios6_idx` (`alumno_id` ASC) ,
   INDEX `fk_usuarios_has_usuarios_usuarios5_idx` (`profesor_id` ASC) ,
@@ -135,9 +135,9 @@ COLLATE = utf8mb4_unicode_ci;
 -- Table `teacherapp`.`conexion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teacherapp`.`conexion` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
   `activo` TINYINT NOT NULL DEFAULT 0,
   INDEX `fk_usuarios_has_usuarios_usuarios8_idx` (`alumno_id` ASC) ,
   INDEX `fk_usuarios_has_usuarios_usuarios7_idx` (`profesor_id` ASC) ,
@@ -161,9 +161,9 @@ COLLATE = utf8mb4_unicode_ci;
 -- Table `teacherapp`.`usuarios_has_especialidades`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teacherapp`.`usuarios_has_especialidades` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `profesor_id` INT NOT NULL,
   `especialidades_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   INDEX `fk_usuarios_has_especialidades_especialidades1_idx` (`especialidades_id` ASC) ,
   INDEX `fk_usuarios_has_especialidades_usuarios1_idx` (`profesor_id` ASC) ,
@@ -185,12 +185,3 @@ COLLATE = utf8mb4_unicode_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Cálculo numérico');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Álgebra');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Lengua');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Inglés');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Música');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Historia');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Plástica');
-INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Informática');

@@ -5,6 +5,8 @@ router.get('/', UsuariosController.getAllUsuarios);
 router.get('/:usuarioId', UsuariosController.getUsuarioById);
 router.get('/:profesorId/especialidades', UsuariosController.getEspecialidadByProfesorId)
 router.get('/:profesorId/chats/:alumnoId', UsuariosController.getChatByUsuariosId)
+router.get('/:profesorId/puntuaciones', UsuariosController.getPuntuacionesByProfesorId)
+router.get('/:usuarioId/clases',UsuariosController.)
 router.post('/', UsuariosController.createUsuario);
 router.put("/:usuarioId", UsuariosController.updateUsuario);
 router.delete('/:usuarioId', UsuariosController.deleteUsuario);

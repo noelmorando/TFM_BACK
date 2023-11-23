@@ -34,7 +34,7 @@ const getUsuarioById = async (req, res) => {
 const  getEspecialidadByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
-        const [result] = await UsuarioModel.selectEspecialidadesByUsuarioId(profesorId)
+        const [result] = await UsuarioModel.selectEspecialidadesByProfesorId(profesorId)
         res.json(result)
     } catch (error) {
         res.json({fatal: error.message})
@@ -49,6 +49,16 @@ const getChatByUsuariosId = async (req,res) => {
     try {
         const {profesorId,alumnoId} = req.params
         const [result] = await UsuarioModel.selectChatByUsuariosId(profesorId,alumnoId)
+        res.json(result)
+    } catch (error) {
+        res.json({fatal: error.message})
+    }
+}
+
+const getPuntuacionesByProfesorId = async (req,res) => {
+    try {
+        const {profesorId} = req.params
+        const [result] = await UsuarioModel.selectPuntuacionesByprofesorId(profesorId)
         res.json(result)
     } catch (error) {
         res.json({fatal: error.message})
@@ -98,4 +108,4 @@ const deleteUsuario = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId}
