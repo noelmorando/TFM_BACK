@@ -1,5 +1,9 @@
 const UsuarioModel = require('../models/usuario.model')
-
+/**
+ * Recupera todos los usuarios de la base de datos.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const getAllUsuarios = async (req,res) => {
     try {
         const [result] = await UsuarioModel.SelectAllUsuarios()
@@ -8,7 +12,11 @@ const getAllUsuarios = async (req,res) => {
         res.json({fatal: error.message})
     }
 }
-
+/**
+ * Recupera los datos de un usuario cuyo Id es usuarioId.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const getUsuarioById = async (req, res) => {
     try{
         const {usuarioId} = req.params
@@ -18,7 +26,11 @@ const getUsuarioById = async (req, res) => {
        res.json({fatal: error.message})
     }
 }
-
+/**
+ * Recupera las especialidades de un usuario cuyo Id es usuarioId.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const  getEspecialidadByUsuarioId = async (req,res) => {
     try {
         const {usuarioId} = req.params
@@ -28,7 +40,11 @@ const  getEspecialidadByUsuarioId = async (req,res) => {
         res.json({fatal: error.message})
     }
 }
-
+/**
+ * Crea un usuario.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const createUsuario = async (req, res) => {
     try{
         console.log(req.body)
@@ -39,7 +55,11 @@ const createUsuario = async (req, res) => {
        res.json({fatal: error.message})
     }
 }
-
+/**
+ * Actualiza los datos de un usuario cuyo Id es usuarioId.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const updateUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
@@ -49,7 +69,11 @@ const updateUsuario = async (req,res) => {
         res.json({fatal: error.message})
     }
 }
-
+/**
+ * Elimina un usuario cuyo Id es usuarioId.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const deleteUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
