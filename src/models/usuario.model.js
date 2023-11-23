@@ -42,6 +42,15 @@ const selectEspecialidadesByProfesorId = (profesorId) => {
 const selectPuntuacionesByprofesorId = (profesorId) => {
     return db.query('SELECT p.* FROM puntuaciones p WHERE p.profesor_id = ?', [profesorId])
 }
+/**
+ * Recupera las clases que tiene un profesor con un alumno, pasando como parámetros profesorId y alumnoId, en ese orden.
+ * @param {number} profesorId 
+ * @param {number} alumnoId 
+ * @returns any
+ */
+const selectClasesByUsuarioId = (profesorId, alumnoId) => {
+    return db.query('SELECT c.* FROM clases c WHERE (c.profesor_id = ? AND c.alumno_id = ?)', [profesorId,alumnoId])
+}
 
 /**
  * Crea un nuevo usuario.
@@ -74,4 +83,4 @@ const deleteUsuarioById = (id) => {
     return db.query("delete from usuarios where id=?", [id])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId}
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId}

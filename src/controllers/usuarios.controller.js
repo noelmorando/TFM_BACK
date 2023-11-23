@@ -54,7 +54,11 @@ const getChatByUsuariosId = async (req,res) => {
         res.json({fatal: error.message})
     }
 }
-
+/**
+ * Recupera las puntuaciones de un profesor.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const getPuntuacionesByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
@@ -64,6 +68,22 @@ const getPuntuacionesByProfesorId = async (req,res) => {
         res.json({fatal: error.message})
     }
 }
+
+/**
+ * Recupera las clases entre un profesor y un alumno, enviando como parámetros profesorId y alumnoId, en ese orden.
+ * @param {any} req 
+ * @param {any} res 
+ */
+const getClasesByUsuariosId = async (req,res) => {
+    try {
+        const {profesorId,alumnoId} = req.params
+        const [result] = await UsuarioModel.selectClasesByUsuarioId(profesorId,alumnoId)
+        res.json(result)
+    } catch (error) {
+        res.json({fatal: error.message})
+    }
+}
+
 /**
  * Crea un usuario.
  * @param {any} req 
@@ -108,4 +128,4 @@ const deleteUsuario = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId}
