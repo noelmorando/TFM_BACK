@@ -41,6 +41,20 @@ const  getEspecialidadByProfesorId = async (req,res) => {
     }
 }
 /**
+ * Recupera el chat del profesor-alumno, pasandole como parámetro el Id del profesor y el Id del alumno. Notar que usuarioId hace referencia al usuario que está logueado, y el usuario2Id al usuario con el que mantiene el chat. Por ejemplo, si el usuario logueado es profesor y quiere ver el chat con un alumno en particular, entonces el usuarioId será el del profesor, mientras que el usuario2Id será el del alumno.
+ * @param {any} req 
+ * @param {any} res 
+ */
+const getChatByUsuariosId = async (req,res) => {
+    try {
+        const {usuarioId,usuario2Id} = req.params
+        const [result] = await UsuarioModel.selectChatByUsuariosId(usuarioId,usuario2Id)
+        res.json(result)
+    } catch (error) {
+        res.json({fatal: error.message})
+    }
+}
+/**
  * Crea un usuario.
  * @param {any} req 
  * @param {any} res 
@@ -84,4 +98,4 @@ const deleteUsuario = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId}
