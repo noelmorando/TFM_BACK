@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `teacherapp`.`usuarios` (
   `nombre` VARCHAR(45) NOT NULL,
   `apellidos` VARCHAR(60) NOT NULL,
   `mail` VARCHAR(50) NOT NULL,
-  `pass` VARCHAR(20) NOT NULL,
+  `pass` LONGTEXT NOT NULL,
   `foto` LONGTEXT NULL,
   `rol` ENUM('admin', 'prof', 'alumn') NOT NULL,
-  `tel` VARCHAR(20) NULL,
+  `tel` LONGTEXT NULL,
   `pxh` FLOAT NULL,
   `experiencia` INT NULL,
   `lat` FLOAT NULL DEFAULT NULL,
@@ -185,3 +185,12 @@ COLLATE = utf8mb4_unicode_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Cálculo numérico');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Álgebra');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Lengua');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Inglés');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Música');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Historia');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Plástica');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`) VALUES ('Informática');

@@ -19,6 +19,15 @@ const selectUsuarioById = (usuarioId) => {
 
 /**
  * 
+ * @param {number} usuarioId 
+ * @returns devuelve todas las especialidades de un usuario
+ */
+const selectEspecialidadesByUsuarioId = (usuarioId) => {
+    return db.query('SELECT e.* FROM usuarios_has_especialidades ue JOIN especialidades e ON ue.especialidades_id = e.id WHERE ue.profesor_id = ?',[usuarioId])
+}
+
+/**
+ * 
  * @param {any} datos datos del nuevo usuario
  * @returns todos los datos del usuario creado
  */
@@ -50,4 +59,4 @@ const deleteUsuarioById = (id) => {
     return db.query("delete from usuarios where id=?", [id])
 }
 
-module.exports = { SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById}
+module.exports = { SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByUsuarioId}

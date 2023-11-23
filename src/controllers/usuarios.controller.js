@@ -11,22 +11,32 @@ const getAllUsuarios = async (req,res) => {
 
 const getUsuarioById = async (req, res) => {
     try{
-        const {usuarioId} = req.params;
+        const {usuarioId} = req.params
         const [result] = await UsuarioModel.selectUsuarioById(usuarioId);
-        res.json(result[0]);
+        res.json(result[0])
     } catch (error){
-       res.json({fatal: error.message});
+       res.json({fatal: error.message})
+    }
+}
+
+const  getEspecialidadByUsuarioId = async (req,res) => {
+    try {
+        const {usuarioId} = req.params
+        const [result] = await UsuarioModel.selectEspecialidadesByUsuarioId(usuarioId)
+        res.json(result[0])
+    } catch (error) {
+        res.json({fatal: error.message})
     }
 }
 
 const createUsuario = async (req, res) => {
     try{
-        console.log(req.body);
-        const [result] = await UsuarioModel.insertUsuario(req.body);
-        const [usuario] = await UsuarioModel.selectUsuarioById(result.insertId);
-        res.json(usuario[0]);
+        console.log(req.body)
+        const [result] = await UsuarioModel.insertUsuario(req.body)
+        const [usuario] = await UsuarioModel.selectUsuarioById(result.insertId)
+        res.json(usuario[0])
     } catch (error){
-       res.json({fatal: error.message});
+       res.json({fatal: error.message})
     }
 }
 
@@ -50,4 +60,4 @@ const deleteUsuario = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByUsuarioId}
