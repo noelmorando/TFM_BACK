@@ -7,9 +7,9 @@ const UsuarioModel = require('../models/usuario.model')
 const getAllUsuarios = async (req,res) => {
     try {
         const [result] = await UsuarioModel.SelectAllUsuarios()
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -21,9 +21,9 @@ const getUsuarioById = async (req, res) => {
     try{
         const {usuarioId} = req.params
         const [result] = await UsuarioModel.selectUsuarioById(usuarioId);
-        res.json(result[0])
+        res.status(200).json(result)
     } catch (error){
-       res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -35,9 +35,9 @@ const  getEspecialidadByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
         const [result] = await UsuarioModel.selectEspecialidadesByProfesorId(profesorId)
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -49,9 +49,9 @@ const getChatByUsuariosId = async (req,res) => {
     try {
         const {profesorId,alumnoId} = req.params
         const [result] = await UsuarioModel.selectChatByUsuariosId(profesorId,alumnoId)
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -63,9 +63,9 @@ const getPuntuacionesByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
         const [result] = await UsuarioModel.selectPuntuacionesByprofesorId(profesorId)
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 
@@ -78,9 +78,9 @@ const getClasesByUsuariosId = async (req,res) => {
     try {
         const {profesorId,alumnoId} = req.params
         const [result] = await UsuarioModel.selectClasesByUsuarioId(profesorId,alumnoId)
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 
@@ -93,9 +93,9 @@ const createUsuario = async (req, res) => {
     try{
         const [result] = await UsuarioModel.insertUsuario(req.body)
         const [usuario] = await UsuarioModel.selectUsuarioById(result.insertId)
-        res.json(usuario[0])
+        res.status(200).json(usuario[0])
     } catch (error){
-       res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -112,7 +112,7 @@ const insertEspecialidadByProfesor = async (req, res) => {
             return res.status(400).json({fatal: error.message});
         }
         const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesorId, especialidades_id);
-        res.json(result);
+        res.status(200).json(result);
     } catch (error) {
         res.status(500).json({fatal: error.message});
     }
@@ -126,9 +126,9 @@ const updateUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
         const [result] = await UsuarioModel.updateUsuarioById(usuarioId,req.body)
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -140,9 +140,9 @@ const deleteUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
         const [result] = await UsuarioModel.deleteUsuarioById(usuarioId)
-        res.json(result)
+        res.status(200).json(result)
     } catch (error) {
-        res.json({fatal: error.message})
+        res.status(500).json({fatal: error.message})
     }
 }
 
