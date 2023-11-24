@@ -20,7 +20,8 @@ const getAllUsuarios = async (req,res) => {
 const getUsuarioById = async (req, res) => {
     try{
         const {usuarioId} = req.params
-        const [result] = await UsuarioModel.selectUsuarioById(usuarioId);
+        const usuario_id = parseInt(usuarioId)
+        const [result] = await UsuarioModel.selectUsuarioById(usuario_id);
         res.status(200).json(result)
     } catch (error){
         res.status(500).json({fatal: error.message})
@@ -34,7 +35,8 @@ const getUsuarioById = async (req, res) => {
 const  getEspecialidadByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
-        const [result] = await UsuarioModel.selectEspecialidadesByProfesorId(profesorId)
+        const profesor_id = parseInt(profesorId)
+        const [result] = await UsuarioModel.selectEspecialidadesByProfesorId(profesor_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -48,7 +50,9 @@ const  getEspecialidadByProfesorId = async (req,res) => {
 const getChatByUsuariosId = async (req,res) => {
     try {
         const {profesorId,alumnoId} = req.params
-        const [result] = await UsuarioModel.selectChatByUsuariosId(profesorId,alumnoId)
+        const profesor_id = parseInt(profesorId)
+        const alumno_id = parseInt(alumnoId)
+        const [result] = await UsuarioModel.selectChatByUsuariosId(profesor_id,alumno_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -62,7 +66,8 @@ const getChatByUsuariosId = async (req,res) => {
 const getPuntuacionesByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
-        const [result] = await UsuarioModel.selectPuntuacionesByprofesorId(profesorId)
+        const profesor_id = parseInt(profesorId)
+        const [result] = await UsuarioModel.selectPuntuacionesByprofesorId(profesor_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -77,7 +82,9 @@ const getPuntuacionesByProfesorId = async (req,res) => {
 const getClasesByUsuariosId = async (req,res) => {
     try {
         const {profesorId,alumnoId} = req.params
-        const [result] = await UsuarioModel.selectClasesByUsuarioId(profesorId,alumnoId)
+        const profesor_id = parseInt(profesorId)
+        const alumno_id = parseInt(alumnoId)
+        const [result] = await UsuarioModel.selectClasesByUsuarioId(profesor_id,alumno_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -107,11 +114,12 @@ const createUsuario = async (req, res) => {
 const insertEspecialidadByProfesor = async (req, res) => {
     try {
         const { profesorId } = req.params
+        const profesor_id = parseInt(profesorId)
         const { especialidades_id } = req.body
         if (!especialidades_id) {
             return res.status(400).json({fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud."});
         }
-        const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesorId, especialidades_id)
+        const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesor_id, especialidades_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -176,7 +184,8 @@ const insertChatByUsersId = async (req,res) => {
 const updateUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
-        const [result] = await UsuarioModel.updateUsuarioById(usuarioId,req.body)
+        const usuario_id = parseInt(usuarioId)
+        const [result] = await UsuarioModel.updateUsuarioById(usuario_id,req.body)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -190,7 +199,8 @@ const updateUsuario = async (req,res) => {
 const deleteUsuario = async (req,res) => {
     try {
         const {usuarioId} = req.params
-        const [result] = await UsuarioModel.deleteUsuarioById(usuarioId)
+        const usuario_id = parseInt(usuarioId)
+        const [result] = await UsuarioModel.deleteUsuarioById(usuario_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -204,11 +214,12 @@ const deleteUsuario = async (req,res) => {
 const deleteEspecialidadByUsuario = async (req,res) => {
     try {
         const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
         const {especialidades_id} = req.body
         if(!especialidades_id){
             return res.status(400).json({fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud."})
         }
-        const [result] = await UsuarioModel.deleteEspecialidadByUsuarioById(profesorId,especialidades_id)
+        const [result] = await UsuarioModel.deleteEspecialidadByUsuarioById(profesor_id,especialidades_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
@@ -224,6 +235,7 @@ const deleteEspecialidadByUsuario = async (req,res) => {
 const deleteClaseByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
         const {alumno_id,fecha} = req.body
         if (!alumno_id && !fecha){
             return res.status(400).json({fatal: "alumno_id y fecha no proporcionados en el cuerpo de la solicitud."})
@@ -232,7 +244,7 @@ const deleteClaseByProfesorId = async (req,res) => {
         }else if (!fecha){
             return res.status(400).json({fatal: "fecha no proporcionada en el cuerpo de la solicitud."})
         }
-        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesorId,alumno_id,fecha)
+        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id,alumno_id,fecha)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
