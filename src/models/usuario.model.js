@@ -1,3 +1,4 @@
+//TODO: enviar todos los req.params como number.
 /**
  * Recupera todos los usuarios de la DB.
  * @returns any
@@ -112,4 +113,15 @@ const deleteEspecialidadByUsuarioById = (profesorId,especialidadId) => {
     return db.query("DELETE FROM usuarios_has_especialidades WHERE profesor_id = ? AND especialidades_id = ?",[profesorId,especialidadId])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId,insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId}
+/**
+ * Elimina una clase de un profesor.
+ * @param {number} profesorId 
+ * @param {number} alumnoId 
+ * @param {string} fecha 
+ * @returns any
+ */
+const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha) => {
+    return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ?",[profesorId,alumnoId,fecha])
+}
+
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId,insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId}

@@ -12,5 +12,6 @@ router.post('/:profesorId/especialidades',UsuariosController.insertEspecialidadB
 router.put("/:usuarioId", UsuariosController.updateUsuario);
 router.delete('/:profesorId/especialidades', UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/:usuarioId', UsuariosController.deleteUsuario);
+router.delete('/:profesorId/clases',UsuariosController.deleteClaseByProfesorId)
 
 module.exports = router;
