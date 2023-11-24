@@ -9,7 +9,7 @@ router.get('/:profesorId/puntuaciones', UsuariosController.getPuntuacionesByProf
 router.get('/:profesorId/clases/:alumnoId',UsuariosController.getClasesByUsuariosId)
 router.post('/', UsuariosController.createUsuario);
 router.post('/:profesorId/especialidades',UsuariosController.insertEspecialidadByProfesor)
-router.post('/:profesorId/clases'.UsuariosController)
+router.post('/:profesorId/clases', UsuariosController.insertClaseByProfesor)
 router.put("/:usuarioId", UsuariosController.updateUsuario);
 router.delete('/:profesorId/especialidades', UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/:usuarioId', UsuariosController.deleteUsuario);
