@@ -210,4 +210,4 @@ const deleteClaseByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor,deleteEspecialidadByUsuario,deleteClaseByProfesorId}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor,deleteEspecialidadByUsuario,deleteClaseByProfesorId,insertClaseByProfesor}
