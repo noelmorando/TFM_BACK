@@ -161,7 +161,7 @@ const insertChatByUsersId = async (req,res) => {
         }else if (!comentarios){
             return res.status(400).json({fatal: "comentarios no proporcionada en el cuerpo de la solicitud."})
         }
-        const [result] = await UsuarioModel.insertClaseByProfesorId(profesor_id,req.body)
+        const [result] = await UsuarioModel.insertChatByUsersId(profesor_id,req.body)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({fatal: error.message})
