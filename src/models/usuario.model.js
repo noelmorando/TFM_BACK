@@ -91,7 +91,7 @@ const insertEspecialidadByProfesorId = (profesorId, especialidadId) => {
  * @returns any
  */
 const insertClaseByProfesorId = (profesorId,{alumno_id, fecha}) => {
-    return db.query ('INSERT INTO clases (profesor_id, alumno_id, fecha) VALUES (?, ?, ?)',[2,alumno_id,fecha])
+    return db.query ('INSERT INTO clases (profesor_id, alumno_id, fecha) VALUES (?, ?, ?)',[profesorId,alumno_id,fecha])
 }
 /**
  * Actualiza los datos del usuario.

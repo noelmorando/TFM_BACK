@@ -111,10 +111,6 @@ const insertEspecialidadByProfesor = async (req, res) => {
         if (!especialidades_id) {
             return res.status(400).json({fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud."});
         }
-        const [existe] = await UsuarioModel.selectEspecialidadByProfesorId(profesorId,especialidades_id)
-        if(existe[0]){
-            return res.status(409).json({fatal: "El profesor ya tiene asignada esta especialidad"})
-        }
         const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesorId, especialidades_id)
         res.status(200).json(result)
     } catch (error) {
