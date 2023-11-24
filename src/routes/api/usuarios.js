@@ -10,6 +10,7 @@ router.get('/:profesorId/clases/:alumnoId',UsuariosController.getClasesByUsuario
 router.post('/', UsuariosController.createUsuario);
 router.post('/:profesorId/especialidades',UsuariosController.insertEspecialidadByProfesor)
 router.post('/:profesorId/clases', UsuariosController.insertClaseByProfesor)
+router.post('/:profesorId/chats/:alumnoId',UsuariosController.insertChatByUsersId)
 router.put("/:usuarioId", UsuariosController.updateUsuario);
 router.delete('/:profesorId/especialidades', UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/:usuarioId', UsuariosController.deleteUsuario);

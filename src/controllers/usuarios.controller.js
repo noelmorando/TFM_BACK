@@ -117,13 +117,20 @@ const insertEspecialidadByProfesor = async (req, res) => {
         res.status(500).json({fatal: error.message})
     }
 }
+
+/**
+ * El profesor, cuyo Id es profesorId, tomado de la ruta, crea una nueva clase.
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
 const insertClaseByProfesor = async (req,res) => {
     try {
         const {profesorId} = req.params
         const profesor_id = parseInt(profesorId)
         const {alumno_id,fecha} = req.body
         if (!alumno_id && !fecha){
-            return res.status(400).json({fatal: "alumno_id no proporcionado en el cuerpo de la solicitud."})
+            return res.status(400).json({fatal: "alumno_id y fecha no proporcionados en el cuerpo de la solicitud."})
         }else if(!alumno_id){
             return res.status(400).json({fatal: "alumno_id no proporcionado en el cuerpo de la solicitud."})
         }else if (!fecha){
@@ -135,6 +142,32 @@ const insertClaseByProfesor = async (req,res) => {
         res.status(500).json({fatal: error.message})
     }
 }
+
+/**
+ * Agrega un nuevo comentario al chat.
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
+const insertChatByUsersId = async (req,res) => {
+    try {
+        const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
+        const {alumno_id,comentarios} = req.body
+        if (!alumno_id && !comentarios){
+            return res.status(400).json({fatal: "alumno_id y comentarios no proporcionados en el cuerpo de la solicitud."})
+        }else if(!alumno_id){
+            return res.status(400).json({fatal: "alumno_id no proporcionado en el cuerpo de la solicitud."})
+        }else if (!comentarios){
+            return res.status(400).json({fatal: "comentarios no proporcionada en el cuerpo de la solicitud."})
+        }
+        const [result] = await UsuarioModel.insertClaseByProfesorId(profesor_id,req.body)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({fatal: error.message})
+    }
+}
+
 /**
  * Actualiza los datos de un usuario cuyo Id es usuarioId.
  * @param {any} req 
@@ -193,7 +226,7 @@ const deleteClaseByProfesorId = async (req,res) => {
         const {profesorId} = req.params
         const {alumno_id,fecha} = req.body
         if (!alumno_id && !fecha){
-            return res.status(400).json({fatal: "alumno_id no proporcionado en el cuerpo de la solicitud."})
+            return res.status(400).json({fatal: "alumno_id y fecha no proporcionados en el cuerpo de la solicitud."})
         }else if(!alumno_id){
             return res.status(400).json({fatal: "alumno_id no proporcionado en el cuerpo de la solicitud."})
         }else if (!fecha){
@@ -206,4 +239,4 @@ const deleteClaseByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor,deleteEspecialidadByUsuario,deleteClaseByProfesorId,insertClaseByProfesor}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor,deleteEspecialidadByUsuario,deleteClaseByProfesorId,insertClaseByProfesor,insertChatByUsersId}
