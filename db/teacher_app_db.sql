@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `teacherapp`.`usuarios` (
   `tel` LONGTEXT NULL,
   `pxh` FLOAT NULL,
   `experiencia` INT NULL,
+  `comentarios` TEXT(255),
   `lat` FLOAT NULL DEFAULT NULL,
   `lon` FLOAT NULL DEFAULT NULL,
   `activo` TINYINT NOT NULL DEFAULT 1,

@@ -35,6 +35,16 @@ const selectEspecialidadesByProfesorId = (profesorId) => {
 }
 
 /**
+ * Recupera una especialidad determinada de un profesor determinado.
+ * @param {number} profesorId 
+ * @param {number} especialidadId 
+ * @returns any
+ */
+const selectEspecialidadByProfesorId = (profesorId,especialidadId) => {
+    return db.query('SELECT e.* FROM usuarios_has_especialidades ue JOIN especialidades e ON ue.especialidades_id = e.id WHERE ue.profesor_id = ? AND e.id = ?', [profesorId,especialidadId])
+}
+
+/**
  * Recupera las puntuaciones de un profesor, cuyo Id es profesorId.
  * @param {number} profesorId 
  * @returns any
@@ -92,4 +102,14 @@ const deleteUsuarioById = (id) => {
     return db.query("delete from usuarios where id=?", [id])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId,insertEspecialidadByProfesorId}
+/**
+ * Elimina una especialidad de un usuario cuyo Id es profesorId.
+ * @param {number} profesorId 
+ * @param {number} especialidadId 
+ * @returns any
+ */
+const deleteEspecialidadByUsuarioById = (profesorId,especialidadId) => {
+    return db.query("DELETE FROM usuarios_has_especialidades WHERE profesor_id = ? AND especialidades_id = ?",[profesorId,especialidadId])
+}
+
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId,insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId}

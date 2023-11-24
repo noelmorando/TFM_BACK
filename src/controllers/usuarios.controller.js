@@ -99,22 +99,26 @@ const createUsuario = async (req, res) => {
     }
 }
 /**
- * Agrega una especialidad a un profesor cuyo Id es profesorId. Se debe especificar en el cuerpo de la solicitud el Id de la especialidad "especialidades_id".
+ * Agrega una especialidad a un profesor cuyo Id es profesorId, tomado de la ruta, y cuyo Id de la especialidad es especialidades_id, tomado del cuerpo de la solicitud.
  * @param {any} req 
  * @param {any} res 
  * @returns any
  */
 const insertEspecialidadByProfesor = async (req, res) => {
     try {
-        const { profesorId } = req.params;
-        const { especialidades_id } = req.body;
+        const { profesorId } = req.params
+        const { especialidades_id } = req.body
         if (!especialidades_id) {
-            return res.status(400).json({fatal: error.message});
+            return res.status(400).json({fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud."});
         }
-        const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesorId, especialidades_id);
-        res.status(200).json(result);
+        const [existe] = await UsuarioModel.selectEspecialidadByProfesorId(profesorId,especialidades_id)
+        if(existe[0]){
+            return res.status(409).json({fatal: "El profesor ya tiene asignada esta especialidad"})
+        }
+        const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesorId, especialidades_id)
+        res.status(200).json(result)
     } catch (error) {
-        res.status(500).json({fatal: error.message});
+        res.status(500).json({fatal: error.message})
     }
 }
 /**
@@ -145,5 +149,23 @@ const deleteUsuario = async (req,res) => {
         res.status(500).json({fatal: error.message})
     }
 }
+/**
+ * Elimina una especialidad de un profesor, cuyo Id es profesorId, tomado de la ruta, y cuyo Id de la especialidad es especialidades_id, tomado del cuerpo de la solicitud.
+ * @param {any} req 
+ * @param {any} res 
+ */
+const deleteEspecialidadByUsuario = async (req,res) => {
+    try {
+        const {profesorId} = req.params
+        const {especialidades_id} = req.body
+        if(!especialidades_id){
+            return res.status(400).json({fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud."})
+        }
+        const [result] = await UsuarioModel.deleteEspecialidadByUsuarioById(profesorId,especialidades_id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({fatal: error.message})
+    }
+}
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor,deleteEspecialidadByUsuario}
