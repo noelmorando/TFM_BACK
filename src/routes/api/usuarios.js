@@ -8,6 +8,7 @@ router.get('/:profesorId/chats/:alumnoId', UsuariosController.getChatByUsuariosI
 router.get('/:profesorId/puntuaciones', UsuariosController.getPuntuacionesByProfesorId)
 router.get('/:profesorId/clases/:alumnoId',UsuariosController.getClasesByUsuariosId)
 router.post('/', UsuariosController.createUsuario);
+router.post('/:profesorId/especialidades',UsuariosController.insertEspecialidadByProfesor)
 router.put("/:usuarioId", UsuariosController.updateUsuario);
 router.delete('/:usuarioId', UsuariosController.deleteUsuario);
 

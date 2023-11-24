@@ -61,7 +61,16 @@ const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
     console.log("insert")
     return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol) VALUES (?,?,?,?,?)',
     [nombre, apellidos, mail, pass, rol]);
-    
+}
+
+/**
+ * Agrega una especialidad nueva a un profesor cuyo Id es profesorId, y cuyo Id de la especialidad es especialidadId.
+ * @param {number} profesorId 
+ * @param {number} especialidadId 
+ * @returns any
+ */
+const insertEspecialidadByProfesorId = (profesorId, especialidadId) => {
+    return db.query('INSERT INTO usuarios_has_especialidades (profesor_id, especialidades_id) VALUES (?, ?)',[profesorId,especialidadId])
 }
 
 /**
@@ -83,4 +92,4 @@ const deleteUsuarioById = (id) => {
     return db.query("delete from usuarios where id=?", [id])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId}
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId,insertEspecialidadByProfesorId}

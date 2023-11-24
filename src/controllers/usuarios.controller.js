@@ -91,12 +91,30 @@ const getClasesByUsuariosId = async (req,res) => {
  */
 const createUsuario = async (req, res) => {
     try{
-        console.log(req.body)
         const [result] = await UsuarioModel.insertUsuario(req.body)
         const [usuario] = await UsuarioModel.selectUsuarioById(result.insertId)
         res.json(usuario[0])
     } catch (error){
        res.json({fatal: error.message})
+    }
+}
+/**
+ * Agrega una especialidad a un profesor cuyo Id es profesorId. Se debe especificar en el cuerpo de la solicitud el Id de la especialidad "especialidades_id".
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
+const insertEspecialidadByProfesor = async (req, res) => {
+    try {
+        const { profesorId } = req.params;
+        const { especialidades_id } = req.body;
+        if (!especialidades_id) {
+            return res.status(400).json({fatal: error.message});
+        }
+        const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesorId, especialidades_id);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({fatal: error.message});
     }
 }
 /**
@@ -128,4 +146,4 @@ const deleteUsuario = async (req,res) => {
     }
 }
 
-module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId}
+module.exports = {getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId,getChatByUsuariosId,getPuntuacionesByProfesorId,getClasesByUsuariosId,insertEspecialidadByProfesor}
