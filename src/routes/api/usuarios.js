@@ -10,7 +10,7 @@ router.get('/:profesorId/puntuaciones', checkToken, checkRole(['prof']), Usuario
 router.get('/:profesorId/clases/:alumnoId', checkToken, checkRole(['prof', 'admin']), UsuariosController.getClasesByUsuariosId);
 router.post('/register', preAuthMiddleware, UsuariosController.register);
 router.post('/login', preAuthMiddleware, UsuariosController.login);
-router.post('/', checkToken, UsuariosController.createUsuario);
+router.post('/', UsuariosController.createUsuario);
 router.post('/:profesorId/especialidades', checkToken, checkRole(['prof', 'admin']), UsuariosController.insertEspecialidadByProfesor)
 router.post('/:profesorId/clases', checkToken, checkRole(['prof', 'admin']), UsuariosController.insertClaseByProfesor)
 router.post('/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
