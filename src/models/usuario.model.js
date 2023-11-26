@@ -53,6 +53,12 @@ const selectEspecialidadByProfesorId = (profesorId,especialidadId) => {
 const selectPuntuacionesByprofesorId = (profesorId) => {
     return db.query('SELECT p.* FROM puntuaciones p WHERE p.profesor_id = ?', [profesorId])
 }
+
+
+const selectAlumnosByprofesorId = (profesorId) => {
+    return db.query('SELECT alumno_id FROM conexion c where profesor_id = ? AND c.activo = 1;', [profesorId])
+}
+
 /**
  * Recupera las clases que tiene un profesor con un alumno, pasando como parámetros profesorId y alumnoId, en ese orden.
  * @param {number} profesorId 
@@ -69,7 +75,6 @@ const selectClasesByUsuarioId = (profesorId, alumnoId) => {
  * @returns any
  */
 const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
-    console.log("insert")
     return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol) VALUES (?,?,?,?,?)',
     [nombre, apellidos, mail, pass, rol]);
 }
@@ -142,4 +147,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha) => {
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ?",[profesorId,alumnoId,fecha])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId,selectClasesByUsuarioId,insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId}
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuarioId,insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId}
