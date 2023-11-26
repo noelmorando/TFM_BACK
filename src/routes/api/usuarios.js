@@ -9,7 +9,7 @@ router.get('/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn
 router.get('/:profesorId/puntuaciones', checkToken, checkRole(['prof']), UsuariosController.getPuntuacionesByProfesorId)
 router.get('/:profesorId/clases/:alumnoId', checkToken, checkRole(['prof', 'admin']), UsuariosController.getClasesByUsuariosId);
 
-router.get('/:profesorId/alumnos', UsuariosController.getAlumnosByProfesorId)
+router.get('/:profesorId/alumnos', checkToken, checkRole(['prof', 'admin']), UsuariosController.getAlumnosByProfesorId);
 
 router.post('/register', preAuthMiddleware, UsuariosController.register);
 router.post('/login', preAuthMiddleware, UsuariosController.login);

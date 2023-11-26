@@ -54,6 +54,11 @@ const selectPuntuacionesByprofesorId = (profesorId) => {
     return db.query('SELECT p.* FROM puntuaciones p WHERE p.profesor_id = ?', [profesorId])
 }
 
+/**
+ * Recupera los alumnos de un profesor determinado.
+ * @param {number} profesorId 
+ * @returns any
+ */
 
 const selectAlumnosByprofesorId = (profesorId) => {
     return db.query('SELECT alumno_id FROM conexion c where profesor_id = ? AND c.activo = 1;', [profesorId])
