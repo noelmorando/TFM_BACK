@@ -121,7 +121,11 @@ const getPuntuacionesByProfesorId = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
-
+/**
+ * Recupera los alumnos de un profesor.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const getAlumnosByProfesorId = async (req, res) => {
     try {
         const { profesorId } = req.params
