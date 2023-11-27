@@ -75,6 +75,22 @@ const getUsuarioById = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+
+/**
+ * Recupera las clases de un usuario (sea profesor o alumno), enviando como parámetros usuarioId.
+ * @param {any} req 
+ * @param {any} res 
+ */
+const getClasesByUsuarioId = async (req, res) => {
+    try {
+        const { usuarioId } = req.params
+        const usuario_id = parseInt(usuarioId)
+        const [result] = await UsuarioModel.selectClasesByUsuarioId(usuario_id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
 /**
  * Recupera las especialidades de un profesor cuyo Id es profesorId.
  * @param {any} req 
@@ -147,7 +163,7 @@ const getClasesByUsuariosId = async (req, res) => {
         const { profesorId, alumnoId } = req.params
         const profesor_id = parseInt(profesorId)
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.selectClasesByUsuarioId(profesor_id, alumno_id)
+        const [result] = await UsuarioModel.selectClasesByUsuariosId(profesor_id, alumno_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -314,4 +330,4 @@ const deleteClaseByProfesorId = async (req, res) => {
     }
 }
 
-module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register }
+module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, createUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register }

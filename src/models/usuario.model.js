@@ -70,8 +70,17 @@ const selectAlumnosByprofesorId = (profesorId) => {
  * @param {number} alumnoId 
  * @returns any
  */
-const selectClasesByUsuarioId = (profesorId, alumnoId) => {
+const selectClasesByUsuariosId = (profesorId, alumnoId) => {
     return db.query('SELECT c.* FROM clases c WHERE (c.profesor_id = ? AND c.alumno_id = ?)', [profesorId,alumnoId])
+}
+
+/**
+ * Recupera las clases que tiene un usuario (sea alumno o profesor) pasando como parámetros usuarioId.
+ * @param {number} usuarioId 
+ * @returns any
+ */
+const selectClasesByUsuarioId = (usuarioId) => {
+    return db.query('SELECT c.* FROM clases c WHERE (c.profesor_id = ? OR c.alumno_id = ?)', [usuarioId, usuarioId])
 }
 
 /**
@@ -152,4 +161,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha) => {
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ?",[profesorId,alumnoId,fecha])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuarioId,insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId}
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId}
