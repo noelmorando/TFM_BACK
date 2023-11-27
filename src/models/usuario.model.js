@@ -61,7 +61,7 @@ const selectPuntuacionesByprofesorId = (profesorId) => {
  */
 
 const selectAlumnosByprofesorId = (profesorId) => {
-    return db.query('SELECT alumno_id FROM conexion c where profesor_id = ? AND c.activo = 1;', [profesorId])
+    return db.query('SELECT c.alumno_id, c.activo FROM conexion c where profesor_id = ?', [profesorId])
 }
 
 /**
