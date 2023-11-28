@@ -6,19 +6,20 @@ const { createToken } = require('../helpers/utils');
  * @param {any} req 
  * @param {any} res 
  */
+//TODO: SE ENVIA SOLO EL NOMBRE, APELLIDOS, PASS, MAIL.
 const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
-        const { nombre, apellidos, mail, foto, rol, tel, pxh, experiencia, lat, long, activo } = req.body;
+        const { nombre, apellidos, mail } = req.body;
 
         // Inserta el usuario en la base de datos
-        const result = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword, foto, rol, tel, pxh, experiencia, lat, long, activo });
+        const result = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword });
 
-        res.json('Usuario registrado correctamente');
+        res.status(200).json('Usuario registrado correctamente');
 
     } catch (error) {
-        res.json({ fatal: error.message });
+        res.status(500).json({ fatal: error.message });
     }
 };
 
@@ -41,13 +42,13 @@ const login = async (req, res) => {
         if (!equals) {
             return res.json({ fatal: 'Error en email y/o password' });
         }
-        res.json({
+        res.status(200).json({
             success: 'Login correcto!!',
             token: createToken(usuario)
         });
 
     } catch (error) {
-        res.json({ fatal: error.message });
+        res.status(500).json({ fatal: error.message });
     }
 };
 

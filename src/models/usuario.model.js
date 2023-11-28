@@ -64,14 +64,6 @@ const selectAlumnosByprofesorId = (profesorId) => {
     return db.query('SELECT alumno_id, activo FROM conexion where profesor_id = ?', [profesorId])
 }
 
-const deleteAlumnosByProfesorId = (profesorId,alumnoId) => {
-    return db.query('DELETE FROM conexion where profesor_id = ? AND alumno_id = ?', [profesorId,alumnoId])
-}
-//TODO
-const updateAlumnosByProfesorId = (profesorId,alumnoId) => {
-    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ?', [activo])
-}
-
 /**
  * Recupera las clases que tiene un profesor con un alumno, pasando como parámetros profesorId y alumnoId, en ese orden.
  * @param {number} profesorId 
@@ -100,7 +92,15 @@ const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
     return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol) VALUES (?,?,?,?,?)',
     [nombre, apellidos, mail, pass, rol]);
 }
-
+/**
+ * se crea la petición de conexión.
+ * @param {number} profesorId 
+ * @param {number} alumnoId 
+ * @returns any
+ */
+const insertAlumnosByProfesorId = (profesorId,alumnoId) => {
+    return db.query('INSERT INTO conexion (profesor_id, alumno_id, activo) VALUES (?, ?, ?)',[profesorId,alumnoId,0])
+}
 /**
  * Agrega una especialidad nueva a un profesor cuyo Id es profesorId, y cuyo Id de la especialidad es especialidadId.
  * @param {number} profesorId 
@@ -138,7 +138,15 @@ const insertChatByUsersId = (profesorId,{alumno_id,comentarios}) => {
 const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo }) => {
     return db.query('update usuarios set nombre=?, apellidos=?, mail=?, pass=?, foto=?, tel=?, pxh=?, experiencia=?, lat=?, lon=?, activo=? where id=?',[nombre, apellidos, mail, pass, foto, tel, pxh, experiencia, lat, lon, activo, id])
 }
-
+/**
+ * se acepta la conexión entre alumno y profesor.
+ * @param {number} profesorId 
+ * @param {number} alumnoId 
+ * @returns any
+ */
+const updateAlumnosByProfesorId = (profesorId,alumnoId) => {
+    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ?', [1,profesorId,alumnoId])
+}
 /**
  * Elimina el usuario.
  * @param {number} id id del usuario
@@ -157,7 +165,15 @@ const deleteUsuarioById = (id) => {
 const deleteEspecialidadByUsuarioById = (profesorId,especialidadId) => {
     return db.query("DELETE FROM usuarios_has_especialidades WHERE profesor_id = ? AND especialidades_id = ?",[profesorId,especialidadId])
 }
-
+/**
+ * Elimina la conexión entre el alumno y el profesor.
+ * @param {number} profesorId 
+ * @param {number} alumnoId 
+ * @returns any
+ */
+const deleteAlumnosByProfesorId = (profesorId,alumnoId) => {
+    return db.query('DELETE FROM conexion where profesor_id = ? AND alumno_id = ?', [profesorId,alumnoId])
+}
 /**
  * Elimina una clase de un profesor.
  * @param {number} profesorId 
@@ -169,4 +185,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha) => {
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ?",[profesorId,alumnoId,fecha])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId}
+module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId}

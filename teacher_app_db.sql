@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS `teacherapp`.`usuarios` (
   `pxh` FLOAT NULL,
   `experiencia` INT NULL,
   `lat` FLOAT NULL DEFAULT NULL,
-  `long` FLOAT NULL DEFAULT NULL,
+  `lon` FLOAT NULL DEFAULT NULL,
   `activo` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `mail_UNIQUE` (`mail` ASC) VISIBLE)
+  UNIQUE INDEX `mail_UNIQUE` (`mail` ASC) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
