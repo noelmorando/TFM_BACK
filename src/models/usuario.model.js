@@ -61,7 +61,15 @@ const selectPuntuacionesByprofesorId = (profesorId) => {
  */
 
 const selectAlumnosByprofesorId = (profesorId) => {
-    return db.query('SELECT c.alumno_id, c.activo FROM conexion c where profesor_id = ?', [profesorId])
+    return db.query('SELECT alumno_id, activo FROM conexion where profesor_id = ?', [profesorId])
+}
+
+const deleteAlumnosByProfesorId = (profesorId,alumnoId) => {
+    return db.query('DELETE FROM conexion where profesor_id = ? AND alumno_id = ?', [profesorId,alumnoId])
+}
+//TODO
+const updateAlumnosByProfesorId = (profesorId,alumnoId) => {
+    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ?', [activo])
 }
 
 /**
