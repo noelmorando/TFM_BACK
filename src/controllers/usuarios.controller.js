@@ -170,21 +170,6 @@ const getClasesByUsuariosId = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
-
-/**
- * Crea un usuario.
- * @param {any} req 
- * @param {any} res 
- */
-const createUsuario = async (req, res) => {
-    try {
-        const [result] = await UsuarioModel.insertUsuario(req.body)
-        const [usuario] = await UsuarioModel.selectUsuarioById(result.insertId)
-        res.status(200).json(usuario[0])
-    } catch (error) {
-        res.status(500).json({ fatal: error.message })
-    }
-}
 /**
  * Agrega una especialidad a un profesor cuyo Id es profesorId, tomado de la ruta, y cuyo Id de la especialidad es especialidades_id, tomado del cuerpo de la solicitud.
  * @param {any} req 
