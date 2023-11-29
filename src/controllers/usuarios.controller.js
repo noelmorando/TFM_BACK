@@ -302,7 +302,8 @@ const deleteEspecialidadByUsuario = async (req, res) => {
         if (!especialidades_id) {
             return res.status(400).json({ fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud." })
         }
-        const [result] = await UsuarioModel.deleteEspecialidadByUsuarioById(profesor_id, especialidades_id)
+        const esp_id = parseInt(especialidades_id)
+        const [result] = await UsuarioModel.deleteEspecialidadByUsuarioById(profesor_id, esp_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -327,7 +328,8 @@ const deleteClaseByProfesorId = async (req, res) => {
         } else if (!fecha) {
             return res.status(400).json({ fatal: "fecha no proporcionada en el cuerpo de la solicitud." })
         }
-        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumno_id, fecha)
+        const alumnoId = parseInt(alumno_id)
+        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
