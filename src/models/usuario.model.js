@@ -61,7 +61,8 @@ const selectPuntuacionesByprofesorId = (profesorId) => {
  */
 
 const selectAlumnosByprofesorId = (profesorId) => {
-    return db.query('SELECT alumno_id, activo FROM conexion where profesor_id = ?', [profesorId])
+    return db.query('SELECT * FROM usuarios u inner join conexion c on u.id = c.alumno_id where profesor_id = ?', [profesorId])
+    
 }
 
 /**
