@@ -55,8 +55,6 @@ const checkRole = (rol) => {
             if (!decoded || !decoded.user_rol) {
                 return res.status(403).json({ message: 'Token inválido o sin rol' });
             }
-
-
             if (rol.includes(decoded.user_rol)) {
                 next();
             } else {
