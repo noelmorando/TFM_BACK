@@ -51,10 +51,6 @@ const checkRole = (rol) => {
                     resolve(decoded);
                 });
             });
-            console.log('Token decodificado:', decoded);
-
-            // Imprime el rol en el token
-            console.log('Rol en el token:', decoded.user_rol);
 
             if (!decoded || !decoded.user_rol) {
                 return res.status(403).json({ message: 'Token inválido o sin rol' });
