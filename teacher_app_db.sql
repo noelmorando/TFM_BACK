@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `teacherapp`.`usuarios` (
   `nombre` VARCHAR(45) NOT NULL,
   `apellidos` VARCHAR(60) NOT NULL,
   `mail` VARCHAR(50) NOT NULL,
-  `pass` VARCHAR(20) NOT NULL,
+  `pass` TEXT(255) NOT NULL,
   `foto` LONGTEXT NULL,
   `rol` ENUM('admin', 'prof', 'alumn') NOT NULL,
   `tel` VARCHAR(20) NULL,
