@@ -1,6 +1,7 @@
 const UsuarioModel = require('../models/usuario.model')
 bcrypt = require('bcryptjs');
 const { createToken } = require('../helpers/utils');
+const nodemailer = require("nodemailer")
 /**
  * Recupera todos los usuarios de la base de datos.
  * @param {any} req 
@@ -45,7 +46,23 @@ const login = async (req, res) => {
             success: 'Login correcto!!',
             token: createToken(usuario)
         });
-
+        const transporter = nodemailer.createTransport({
+            host: "localhost",
+            port: 3000,
+            secure: true,
+            auth: {
+              user: "uunir9371@gmail.com",
+              pass: "teacherapp",
+            },
+          })
+        const info = await transporter.sendMail({
+            from: '"TeacherApp" <uunir9371@gmail.com>', // sender address
+            to: "uunir9371@gmail.com", // list of receivers
+            subject: "Hello ✔", // Subject line
+            text: "Hello world?", // plain text body
+            html: "<b>Hello world?</b>", // html body
+        })
+        console.log("Message sent: %s", info.messageId)
     } catch (error) {
         res.status(500).json({ fatal: error.message });
     }
