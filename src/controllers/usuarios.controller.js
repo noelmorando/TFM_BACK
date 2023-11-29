@@ -15,7 +15,6 @@ const register = async (req, res) => {
 
         // Inserta el usuario en la base de datos
         const [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol });
-
         res.status(200).json(result);
 
     } catch (error) {
@@ -34,7 +33,6 @@ const login = async (req, res) => {
         if (!rows || !rows.length) {
             return res.json({ fatal: 'Error en email y/o password' });
         }
-
         const usuario = rows[0];
 
         //¿Coincide la password de la BBDD con la del body(login)
@@ -42,27 +40,35 @@ const login = async (req, res) => {
         if (!equals) {
             return res.json({ fatal: 'Error en email y/o password' });
         }
+        // Configura nodemailer con tus credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', // Coloca tu dirección de correo de Gmail
+                pass: 'vwdq swox luov icis' // Coloca la contraseña de tu correo de Gmail
+            }
+        });
+
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', // La dirección de correo electrónico que utilizarás como remitente
+            to: 'unirunir22@gmail.com', // La dirección de correo electrónico del destinatario (puedes usar `usuario.mail` o colocar otra)
+            subject: 'Asunto del correo',
+            text: 'Cuerpo del correo electrónico'
+        };
+
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        });
         res.status(200).json({
             success: 'Login correcto!!',
             token: createToken(usuario)
         });
-        const transporter = nodemailer.createTransport({
-            host: "localhost",
-            port: 3000,
-            secure: true,
-            auth: {
-              user: "uunir9371@gmail.com",
-              pass: "teacherapp",
-            },
-          })
-        const info = await transporter.sendMail({
-            from: '"TeacherApp" <uunir9371@gmail.com>', // sender address
-            to: "uunir9371@gmail.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
-        })
-        console.log("Message sent: %s", info.messageId)
+        
     } catch (error) {
         res.status(500).json({ fatal: error.message });
     }
