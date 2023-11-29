@@ -6,7 +6,6 @@ const { createToken } = require('../helpers/utils');
  * @param {any} req 
  * @param {any} res 
  */
-//TODO: SE ENVIA SOLO EL NOMBRE, APELLIDOS, PASS, MAIL.
 const register = async (req, res) => {
     try {
         //Encriptamos la password
@@ -182,7 +181,7 @@ const insertEspecialidadByProfesor = async (req, res) => {
         const profesor_id = parseInt(profesorId)
         const { especialidades_id } = req.body
         if (!especialidades_id) {
-            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud." });
+            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud." })
         }
         const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesor_id, especialidades_id)
         res.status(200).json(result)
@@ -190,11 +189,24 @@ const insertEspecialidadByProfesor = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+/**
+ * Crea una petición de solicitud para que el profesor acepte al alumno. El Id del alumno es proporcionado en el body, mientras que el Id del profesor es tomado de la ruta.
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
 const createAlumnosByProfesorId = async (req,res) => {
     try {
-        
+        const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
+        const {alumnoId} = req.body
+        if(!alumnoId){
+            return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
+        }
+        const [result] = await UsuarioModel.insertAlumnosByProfesorId(profesor_id,alumnoId)
+        res.status(200).json(result)
     } catch (error) {
-        
+        res.status(500).json({ fatal: error.message })
     }
 }
 /**
@@ -322,4 +334,4 @@ const deleteClaseByProfesorId = async (req, res) => {
     }
 }
 
-module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register }
+module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,createAlumnosByProfesorId }
