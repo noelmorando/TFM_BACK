@@ -11,10 +11,10 @@ const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
-        const { nombre, apellidos, mail,pass } = req.body;
+        const { nombre, apellidos, mail,rol } = req.body;
 
         // Inserta el usuario en la base de datos
-        const result = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass });
+        const [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol });
 
         res.status(200).json(result);
 
