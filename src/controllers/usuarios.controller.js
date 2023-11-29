@@ -280,7 +280,7 @@ const updateUsuario = async (req, res) => {
  * @param {any} res 
  * @returns any
  */
-const updateAlumnosByProfesorId = async (req,res) => {
+const updateAlumnoByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
         const profesor_id = parseInt(profesorId)
@@ -288,7 +288,8 @@ const updateAlumnosByProfesorId = async (req,res) => {
         if(!alumnoId){
             return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
         }
-        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumnoId)
+        const alumno_id = parseInt(alumnoId)
+        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -355,6 +356,26 @@ const deleteClaseByProfesorId = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+/**
+ * El profesor rechaza la solicitud de conexión del alumno. El Id del alumno es proporcionado en el cuerpo de la solicitud, mientras que el Id del profesor es proporcionado en la ruta.
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
+const deleteAlumnoByProfesorId = async (req,res) => {
+    try {
+        const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
+        const {alumnoId} = req.body
+        if(!alumnoId){
+            return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
+        }
+        const alumno_id = parseInt(alumnoId)
+        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
 
-
-module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnosByProfesorId }
+module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId }

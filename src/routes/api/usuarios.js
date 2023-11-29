@@ -23,11 +23,12 @@ router.post('/:profesorId/clases', checkToken, checkRole(['prof', 'admin']), Usu
 router.post('/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
 router.post('/:profesorId/alumnos',checkToken, checkRole(['prof']), UsuariosController.insertAlumnoByProfesorId);
 router.put("/:usuarioId", checkToken, UsuariosController.updateUsuario);
-router.put('/:profesorId/alumnos',checkToken, checkRole(['prof']), UsuariosController.updateAlumnosByProfesorId);
+router.put('/:profesorId/alumnos',checkToken, checkRole(['prof']), UsuariosController.updateAlumnoByProfesorId);
 //al admin no le interesa eliminar una especialidad.
 router.delete('/:profesorId/especialidades', checkToken, checkRole(['prof', 'admin']), UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/:usuarioId', checkToken, checkRole(['admin']), UsuariosController.deleteUsuario);
 //al admin no le interesa eliminar una clase.
 router.delete('/:profesorId/clases', checkToken, checkRole(['prof', 'admin']), UsuariosController.deleteClaseByProfesorId)
+router.delete('/:profesorId/alumnos',checkToken, checkRole(['prof']), UsuariosController.deleteAlumnoByProfesorId);
 
 module.exports = router;
