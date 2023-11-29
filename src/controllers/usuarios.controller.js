@@ -70,8 +70,11 @@ const login = async (req, res) => {
 
 
 const getAllUsuarios = async (req, res) => {
+    const {p = 1} = req.query;
+    const {limit = 10} = req.query;
+
     try {
-        const [result] = await UsuarioModel.SelectAllUsuarios()
+        const [result] = await UsuarioModel.SelectAllUsuarios(parseInt(p),parseInt(limit))
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
