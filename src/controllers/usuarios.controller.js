@@ -195,7 +195,7 @@ const insertEspecialidadByProfesor = async (req, res) => {
  * @param {any} res 
  * @returns any
  */
-const insertAlumnosByProfesorId = async (req,res) => {
+const insertAlumnoByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
         const profesor_id = parseInt(profesorId)
@@ -274,11 +274,24 @@ const updateUsuario = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+/**
+ * El profesor acepta la petición de conexión del alumno. El Id del alumno es proporcionado en el body, mientras que el Id del profesor es proporcionado en la ruta.
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
 const updateAlumnosByProfesorId = async (req,res) => {
     try {
-        
+        const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
+        const {alumnoId} = req.body
+        if(!alumnoId){
+            return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
+        }
+        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumnoId)
+        res.status(200).json(result)
     } catch (error) {
-        
+        res.status(500).json({ fatal: error.message })
     }
 }
 /**
@@ -343,4 +356,5 @@ const deleteClaseByProfesorId = async (req, res) => {
     }
 }
 
-module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnosByProfesorId }
+
+module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnosByProfesorId }
