@@ -190,7 +190,13 @@ const insertEspecialidadByProfesor = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
-
+const createAlumnosByProfesorId = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 /**
  * El profesor, cuyo Id es profesorId, tomado de la ruta, crea una nueva clase.
  * @param {any} req 
