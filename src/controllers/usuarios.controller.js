@@ -195,7 +195,7 @@ const insertEspecialidadByProfesor = async (req, res) => {
  * @param {any} res 
  * @returns any
  */
-const createAlumnosByProfesorId = async (req,res) => {
+const insertAlumnosByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
         const profesor_id = parseInt(profesorId)
@@ -274,6 +274,13 @@ const updateUsuario = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+const updateAlumnosByProfesorId = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 /**
  * Elimina un usuario cuyo Id es usuarioId.
  * @param {any} req 
@@ -336,4 +343,4 @@ const deleteClaseByProfesorId = async (req, res) => {
     }
 }
 
-module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,createAlumnosByProfesorId }
+module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnosByProfesorId }

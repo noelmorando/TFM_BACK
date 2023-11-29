@@ -1,4 +1,3 @@
-//TODO: enviar todos los req.params como number.
 /**
  * Recupera todos los usuarios de la DB.
  * @returns any
