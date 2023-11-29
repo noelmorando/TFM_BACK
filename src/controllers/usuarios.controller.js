@@ -11,12 +11,12 @@ const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
-        const { nombre, apellidos, mail } = req.body;
+        const { nombre, apellidos, mail,pass } = req.body;
 
         // Inserta el usuario en la base de datos
-        const result = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword });
+        const result = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass });
 
-        res.status(200).json('Usuario registrado correctamente');
+        res.status(200).json(result);
 
     } catch (error) {
         res.status(500).json({ fatal: error.message });
