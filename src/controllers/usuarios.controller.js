@@ -180,7 +180,7 @@ const getAlumnosByProfesorId = async (req, res) => {
 }
 
 /**
- * Recupera las clases entre un profesor y un alumno, enviando como parámetros profesorId y alumnoId, en ese orden.
+ * Recupera las clases entre un profesor y un alumno, enviando como parámetros profesorId y alumnoId, en ese orden. Especialidades_id se recupera desde el body
  * @param {any} req 
  * @param {any} res 
  */
