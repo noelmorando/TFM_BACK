@@ -276,6 +276,28 @@ const insertClaseByProfesor = async (req, res) => {
             return res.status(400).json({ fatal: "fecha no proporcionada en el cuerpo de la solicitud." })
         }
         const [result] = await UsuarioModel.insertClaseByProfesorId(profesor_id, req.body)
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
+            }
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: 'unirunir22@gmail.com', //al alumno
+            subject: 'Nueva clase agendada.',
+            text: `Hola!\nTienes una nueva clase pendiente.\nEntra a la sección "Mis Clases" para ver la fecha de la clase.\n\nEquipo de TeacherApp.`
+        }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -301,6 +323,28 @@ const insertChatByUsersId = async (req, res) => {
             return res.status(400).json({ fatal: "comentarios no proporcionada en el cuerpo de la solicitud." })
         }
         const [result] = await UsuarioModel.insertChatByUsersId(profesor_id, req.body)
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
+            }
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: 'unirunir22@gmail.com', 
+            subject: 'Nuevo mensaje en el foro.',
+            text: `Hola!\nSe ha agregado un nuevo mensaje en el foro.\nMensaje:${comentarios}\n\nEquipo de TeacherApp.`
+        }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -338,6 +382,28 @@ const updateAlumnoByProfesorId = async (req,res) => {
         }
         const alumno_id = parseInt(alumnoId)
         const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id)
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
+            }
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: 'unirunir22@gmail.com', //al alumno
+            subject: 'Solicitud de conexión aceptada.',
+            text: `Hola!\nEl profesor aceptó la solicitud. Ya puedes coordinar una fecha para tu primera clase.\n\nEquipo de TeacherApp.`
+        }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -399,6 +465,28 @@ const deleteClaseByProfesorId = async (req, res) => {
         }
         const alumnoId = parseInt(alumno_id)
         const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha)
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
+            }
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: 'unirunir22@gmail.com', //al alumno
+            subject: 'Clase suspendida.',
+            text: `Hola!\nSe ha cancelado la clase que tenias el ${fecha}.\n\nEquipo de TeacherApp.`
+        }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -420,6 +508,28 @@ const deleteAlumnoByProfesorId = async (req,res) => {
         }
         const alumno_id = parseInt(alumnoId)
         const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id)
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
+            }
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: 'unirunir22@gmail.com', //al alumno
+            subject: 'Solicitud de conexión rechazada.',
+            text: `Hola!\nLamentablemente el profesor rechazó tu solicitud de conexión. Pero no te preocupes! Puedes encontrar otros profesores cerca tuyo. Ánimo!\n\nEquipo de TeacherApp.`
+        }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
