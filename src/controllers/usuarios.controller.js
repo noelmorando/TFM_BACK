@@ -189,7 +189,9 @@ const getClasesByUsuariosId = async (req, res) => {
         const { profesorId, alumnoId } = req.params
         const profesor_id = parseInt(profesorId)
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.selectClasesByUsuariosId(profesor_id, alumno_id)
+        const especialidadId = req.body
+        const especialidades_id = parseInt(especialidadId)
+        const [result] = await UsuarioModel.selectClasesByUsuariosId(profesor_id, alumno_id, especialidades_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })

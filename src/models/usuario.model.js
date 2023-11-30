@@ -70,8 +70,8 @@ const selectAlumnosByprofesorId = (profesorId) => {
  * @param {number} alumnoId 
  * @returns any
  */
-const selectClasesByUsuariosId = (profesorId, alumnoId) => {
-    return db.query('SELECT c.* FROM clases c WHERE (c.profesor_id = ? AND c.alumno_id = ?)', [profesorId,alumnoId])
+const selectClasesByUsuariosId = (profesorId, alumnoId, especialidadId) => {
+    return db.query('SELECT c.* FROM clases c WHERE (c.profesor_id = ? AND c.alumno_id = ? AND especialidades_id = ?)', [profesorId,alumnoId, especialidadId])
 }
 
 /**
