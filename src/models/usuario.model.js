@@ -117,8 +117,8 @@ const insertEspecialidadByProfesorId = (profesorId, especialidadId) => {
  * @param {any} param1 
  * @returns any
  */
-const insertClaseByProfesorId = (profesorId,{alumno_id, fecha}) => {
-    return db.query ('INSERT INTO clases (profesor_id, alumno_id, fecha) VALUES (?, ?, ?)',[profesorId,alumno_id,fecha])
+const insertClaseByProfesorId = (profesorId,{alumno_id, fecha,especialidades_id}) => {
+    return db.query ('INSERT INTO clases (profesor_id, alumno_id, fecha, especialidades_id) VALUES (?, ?, ?, ?)',[profesorId,alumno_id,fecha,especialidades_id])
 }
 /**
  * Agrega un comentario al chat.
@@ -181,8 +181,8 @@ const deleteAlumnosByProfesorId = (profesorId,alumnoId) => {
  * @param {string} fecha 
  * @returns any
  */
-const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha) => {
-    return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ?",[profesorId,alumnoId,fecha])
+const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especialidades_id) => {
+    return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
 }
 
 module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId}

@@ -267,9 +267,9 @@ const insertClaseByProfesor = async (req, res) => {
     try {
         const { profesorId } = req.params
         const profesor_id = parseInt(profesorId)
-        const { alumno_id, fecha } = req.body
-        if (!alumno_id && !fecha) {
-            return res.status(400).json({ fatal: "alumno_id y fecha no proporcionados en el cuerpo de la solicitud." })
+        const { alumno_id, fecha,especialidades_id } = req.body
+        if (!especialidades_id) {
+            return res.status(400).json({ fatal: "especialidades_id proporcionado en el cuerpo de la solicitud." })
         } else if (!alumno_id) {
             return res.status(400).json({ fatal: "alumno_id no proporcionado en el cuerpo de la solicitud." })
         } else if (!fecha) {
@@ -455,16 +455,16 @@ const deleteClaseByProfesorId = async (req, res) => {
     try {
         const { profesorId } = req.params
         const profesor_id = parseInt(profesorId)
-        const { alumno_id, fecha } = req.body
-        if (!alumno_id && !fecha) {
-            return res.status(400).json({ fatal: "alumno_id y fecha no proporcionados en el cuerpo de la solicitud." })
+        const { alumno_id, fecha, especialidades_id } = req.body
+        if (!especialidades_id) {
+            return res.status(400).json({ fatal: "especialidades_id no proporcionado en el cuerpo de la solicitud." })
         } else if (!alumno_id) {
             return res.status(400).json({ fatal: "alumno_id no proporcionado en el cuerpo de la solicitud." })
         } else if (!fecha) {
             return res.status(400).json({ fatal: "fecha no proporcionada en el cuerpo de la solicitud." })
         }
         const alumnoId = parseInt(alumno_id)
-        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha)
+        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha, especialidades_id)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
