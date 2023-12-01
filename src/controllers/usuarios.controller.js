@@ -375,8 +375,8 @@ const updateUsuario = async (req, res) => {
             const mailOptions = {
                 from: 'unirunir22@gmail.com', 
                 to: 'unirunir22@gmail.com', //al alumno
-                subject: 'Te han dado de baja',
-                text: `Hola!\nEl profesor aceptó la solicitud. Ya puedes coordinar una fecha para tu primera clase.\n\nEquipo de TeacherApp.`
+                subject: 'Te vamos a extrañar 😔',
+                text: `Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp.`
             }
             // Enviar el correo electrónico
             transporter.sendMail(mailOptions, (error, info) => {
