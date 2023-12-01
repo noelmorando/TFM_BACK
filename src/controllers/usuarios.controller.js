@@ -28,7 +28,16 @@ const register = async (req, res) => {
             from: 'unirunir22@gmail.com', 
             to: 'unirunir22@gmail.com', 
             subject: 'Bienvenido a TeacherApp 😊',
-            text: `Estamos encantados de tenerte como ${rol == "prof" ? "profesor" : "alumno"}!\nNo olvides completar tus datos personales ${rol == "prof" ? "y profesionales para que tus futuros alumnos te encuentren más rápido." : "para que puedas encontrar a tu profesor ideal rápidamente."}\nÉxitos en tus clases!\n\nEquipo de TeacherApp.`
+            text: `Estamos encantados de tenerte como ${rol == "prof" ? "profesor" : "alumno"}!\nNo olvides completar tus datos personales ${rol == "prof" ? "y profesionales para que tus futuros alumnos te encuentren más rápido." : "para que puedas encontrar a tu profesor ideal rápidamente."}\nÉxitos en tus clases!\n\nEquipo de TeacherApp.`,
+            html:`<img src="cid:imagen">`,
+            attachments: [
+                {
+                    filename: '../../images/logo.jpg', 
+                    content: imageBuffer,   
+                    encoding: 'base64',
+                    cid: 'imagen'      
+                }
+            ]
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
