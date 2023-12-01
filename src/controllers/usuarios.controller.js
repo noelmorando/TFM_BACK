@@ -362,30 +362,28 @@ const updateUsuario = async (req, res) => {
         const usuario_id = parseInt(usuarioId)
         const {activo} = req.body
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
-        if(activo===0){
-            // Configurar nodemailer con las credenciales de Gmail
-            const transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: 'unirunir22@gmail.com', 
-                    pass: 'vwdq swox luov icis' 
-                }
-            })
-            // Opciones del correo electrónico
-            const mailOptions = {
-                from: 'unirunir22@gmail.com', 
-                to: 'unirunir22@gmail.com', //al alumno
-                subject: 'Te vamos a extrañar 😔',
-                text: `Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp.`
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
             }
-            // Enviar el correo electrónico
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    return console.log(error);
-                }
-                console.log('Correo electrónico enviado: ' + info.response);
-            })
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: 'unirunir22@gmail.com', //al alumno
+            subject: `${activo===false? "Te vamos a extrañar 😔" : "Ya estás dado de alta!"}`,
+            text: `${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deamos muchos éxitos!\n\nEquipo de TeacherApp."}`
         }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
