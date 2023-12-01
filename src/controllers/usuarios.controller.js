@@ -2,6 +2,7 @@ const UsuarioModel = require('../models/usuario.model')
 bcrypt = require('bcryptjs');
 const { createToken } = require('../helpers/utils');
 const nodemailer = require("nodemailer")
+const fs = require('fs');
 /**
  * Recupera todos los usuarios de la base de datos.
  * @param {any} req 
@@ -24,6 +25,7 @@ const register = async (req, res) => {
             }
         })
         // Opciones del correo electrónico
+        // Ruta de la imagen en tu ordenador
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
             to: 'unirunir22@gmail.com', 
@@ -32,8 +34,8 @@ const register = async (req, res) => {
             html:`<img src="cid:imagen">`,
             attachments: [
                 {
-                    filename: '../../images/logo.jpg', 
-                    content: imageBuffer,   
+                    filename: 'logo.jpg', 
+                    content: fs.readFileSync('../../images/logo.jpg'),   
                     encoding: 'base64',
                     cid: 'imagen'      
                 }
