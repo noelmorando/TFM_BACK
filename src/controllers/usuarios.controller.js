@@ -2,7 +2,7 @@ const UsuarioModel = require('../models/usuario.model')
 bcrypt = require('bcryptjs');
 const { createToken } = require('../helpers/utils');
 const nodemailer = require("nodemailer")
-const fs = require('fs');
+const fs = require('fs')
 /**
  * Recupera todos los usuarios de la base de datos.
  * @param {any} req 
@@ -24,22 +24,19 @@ const register = async (req, res) => {
                 pass: 'vwdq swox luov icis' 
             }
         })
-        // Opciones del correo electrónico
         // Ruta de la imagen en tu ordenador
+        const imagePath = 'C/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
+
+        // Leer la imagen como un buffer y convertirla a base64
+        const imageBuffer = fs.readFileSync(imagePath);
+        const imageBase64 = imageBuffer.toString('base64');
+        // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
             to: 'unirunir22@gmail.com', 
             subject: 'Bienvenido a TeacherApp 😊',
             text: `Estamos encantados de tenerte como ${rol == "prof" ? "profesor" : "alumno"}!\nNo olvides completar tus datos personales ${rol == "prof" ? "y profesionales para que tus futuros alumnos te encuentren más rápido." : "para que puedas encontrar a tu profesor ideal rápidamente."}\nÉxitos en tus clases!\n\nEquipo de TeacherApp.`,
-            html:`<img src="cid:imagen">`,
-            attachments: [
-                {
-                    filename: 'logo.jpg', 
-                    content: fs.readFileSync('../../images/logo.jpg'),   
-                    encoding: 'base64',
-                    cid: 'imagen'      
-                }
-            ]
+            html:`<img src="data:image/jpeg;base64,${imageBase64}" />`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -407,18 +404,9 @@ const updateUsuario = async (req, res) => {
                     <body>
                         <div class="container">
                         <p>${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deseamos muchos éxitos!"}</p>
-                        <img src="cid:imagen"
                         </div>
                     </body>
-                   </html>`,
-            attachments: [
-                {
-                    filename: '../../images/logo.jpg', 
-                    content: imageBuffer,   
-                    encoding: 'base64',
-                    cid: 'imagen'      
-                }
-            ]
+                   </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
