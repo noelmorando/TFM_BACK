@@ -89,8 +89,12 @@ const selectClasesByUsuarioId = (usuarioId) => {
  * @returns any
  */
 const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
+    if(rol=="prof"){
+        return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol,activo) VALUES (?,?,?,?,?,?)',
+        [nombre, apellidos, mail, pass, rol,0]);
+    }
     return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol) VALUES (?,?,?,?,?)',
-    [nombre, apellidos, mail, pass, rol]);
+        [nombre, apellidos, mail, pass, rol]);
 }
 /**
  * se crea la petición de conexión.
