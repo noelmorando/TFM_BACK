@@ -375,7 +375,7 @@ const updateUsuario = async (req, res) => {
             from: 'unirunir22@gmail.com', 
             to: 'unirunir22@gmail.com', //al alumno
             subject: `${activo===false? "Te vamos a extrañar 😔" : "Ya estás dado de alta!"}`,
-            text: `${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deamos muchos éxitos!\n\nEquipo de TeacherApp."}`
+            text: `${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deseamos muchos éxitos!\n\nEquipo de TeacherApp."}`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
