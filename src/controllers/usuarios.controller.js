@@ -395,7 +395,8 @@ const updateUsuario = async (req, res) => {
                     </head>
                     <body>
                         <div class="container">
-                        <p>${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deseamos muchos éxitos!\n\nEquipo de TeacherApp."}</p>
+                        <p>${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deseamos muchos éxitos!"}</p>
+                        <img src="../../images/logo.png">
                         </div>
                     </body>
                    </html>`
