@@ -1,8 +1,18 @@
+
+/**
+ * Recupera todos los usuarios de la DB.
+ * @returns any
+ */
+const SelectAllUsuarios = (page, limit) => {
+    return db.query('select * from usuarios');
+}
+
+
 /**
  * Recupera todos los usuarios de la DB con paginado.
  * @returns any
  */
-const SelectAllUsuarios = (page, limit) => {
+const SelectAllUsuariosByPage = (page, limit) => {
     return db.query('select * from usuarios limit ? offset ?', [limit, (page-1)*limit]);
 }
 
@@ -189,4 +199,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especiali
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
 }
 
-module.exports = {SelectAllUsuarios, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId}
+module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId}

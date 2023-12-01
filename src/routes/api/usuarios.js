@@ -3,6 +3,7 @@ const UsuariosController = require('../../controllers/usuarios.controller');
 const { checkRole, preAuthMiddleware, checkToken } = require('../../middlewares/auth.middleware');
 
 router.get('/todos', checkToken, UsuariosController.getAllUsuarios);
+router.get('/todos/pag', checkToken, UsuariosController.getAllUsuariosByPage);
 router.get('/:usuarioId', checkToken, UsuariosController.getUsuarioById);
 
 router.get('/:usuarioId/clases', UsuariosController.getClasesByUsuarioId);

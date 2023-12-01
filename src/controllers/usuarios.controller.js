@@ -82,6 +82,15 @@ const login = async (req, res) => {
 
 
 const getAllUsuarios = async (req, res) => {
+    try {
+        const [result] = await UsuarioModel.SelectAllUsuarios()
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
+
+const getAllUsuariosByPage = async (req, res) => {
     const {p = 1} = req.query;
     const {limit = 10} = req.query;
 
@@ -92,6 +101,7 @@ const getAllUsuarios = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+
 /**
  * Recupera los datos de un usuario cuyo Id es usuarioId.
  * @param {any} req 
@@ -590,4 +600,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId }
