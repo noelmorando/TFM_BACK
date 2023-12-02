@@ -528,7 +528,7 @@ const updateUsuario = async (req, res) => {
                     </head>
                     <body>
                         <div class="container">
-                        <p>${activo===false ? "Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.\nEsperemos que no sea un adiós sino un hasta pronto!\n\nEquipo de TeacherApp." : "Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases. Te deseamos muchos éxitos!"}</p>
+                        ${activo===false ? "<p>Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.</p><p>Esperemos que no sea un adiós sino un hasta pronto!</p>" : "<p>Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases.</p><p>Te deseamos muchos éxitos!</p>"}
                         </div>
                     </body>
                     <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
@@ -601,7 +601,7 @@ const updateAlumnoByProfesorId = async (req,res) => {
                     <body>
                         <div class="container">
                         <p>Hola!</p>
-                        <p>El profesor aceptó la solicitud. Ya puedes coordinar una fecha para tu primera clase.</p>
+                        <p>El profesor aceptó la solicitud!</p><p>Ya puedes coordinar una fecha para tu primera clase.</p>
                         </div>
                     </body>
                     <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
@@ -787,7 +787,7 @@ const deleteAlumnoByProfesorId = async (req,res) => {
                     <body>
                         <div class="container">
                         <p>Hola!</p>
-                        <p>Lamentablemente el profesor rechazó tu solicitud de conexión. Pero no te preocupes! Puedes encontrar otros profesores cerca tuyo. Ánimo!</p>
+                        <p>Lamentablemente el profesor rechazó tu solicitud de conexión. Pero no te preocupes! Puedes encontrar otros profesores cerca tuyo.</p><p>Ánimo!</p>
                         </div>
                     </body>
                     <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
