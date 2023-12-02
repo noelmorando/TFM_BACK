@@ -185,8 +185,8 @@ const deleteEspecialidadByUsuarioById = (profesorId,especialidadId) => {
  * @param {number} alumnoId 
  * @returns any
  */
-const deleteAlumnosByProfesorId = (profesorId,alumnoId) => {
-    return db.query('DELETE FROM conexion where profesor_id = ? AND alumno_id = ?', [profesorId,alumnoId])
+const deleteAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
+    return db.query('DELETE FROM conexion where profesor_id = ? AND alumno_id = ? AND especialidad_id = ?', [profesorId,alumnoId,especialidadId])
 }
 /**
  * Elimina una clase de un profesor.

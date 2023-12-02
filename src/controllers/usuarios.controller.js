@@ -750,12 +750,12 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     try {
         const {profesorId} = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId} = req.body
+        const {alumnoId,especialidadId} = req.body
         if(!alumnoId){
             return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
         }
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id)
+        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id,especialidadId)
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
