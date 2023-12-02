@@ -112,8 +112,8 @@ const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
  * @param {number} alumnoId 
  * @returns any
  */
-const insertAlumnosByProfesorId = (profesorId,alumnoId) => {
-    return db.query('INSERT INTO conexion (profesor_id, alumno_id, activo) VALUES (?, ?, ?)',[profesorId,alumnoId,0])
+const insertAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
+    return db.query('INSERT INTO conexion (profesor_id, alumno_id, activo,especialidad_id) VALUES (?, ?, ?,?)',[profesorId,alumnoId,0,especialidadId])
 }
 /**
  * Agrega una especialidad nueva a un profesor cuyo Id es profesorId, y cuyo Id de la especialidad es especialidadId.
@@ -158,8 +158,8 @@ const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, 
  * @param {number} alumnoId 
  * @returns any
  */
-const updateAlumnosByProfesorId = (profesorId,alumnoId) => {
-    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ?', [1,profesorId,alumnoId])
+const updateAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
+    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ? AND especialidad_id = ?', [1,profesorId,alumnoId,especialidadId])
 }
 /**
  * Elimina el usuario.
