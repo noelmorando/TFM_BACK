@@ -9,6 +9,7 @@ const fs = require('fs')
  * @param {any} res 
  */
 const register = async (req, res) => {
+    //TODO: AGREGAR LOS DEMAS CAMPOS PARA EL REGISTRO DE PROFESORES.
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
