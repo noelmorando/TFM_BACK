@@ -24,51 +24,53 @@ const register = async (req, res) => {
                 pass: 'vwdq swox luov icis' 
             }
         })
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
-        // Opciones del correo electrónico
-        const mailOptions = {
-            from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', 
-            subject: 'Bienvenido a TeacherApp 😊',
-            html: `<html>
-                <head>
-                    <style>
-                    .container {
-                        max-width: 1000px;
-                        margin: 0 auto;
-                        padding: 15px;
-                    }
-                    </style>
-                </head>
-                <body>
-                <div class="container">
-                    <p>Estamos encantados de tenerte como ${rol == "prof" ? "profesor" : "alumno"}!</p>
-                    <p>No olvides completar tus datos personales ${rol == "prof" ? "y profesionales para que tus futuros alumnos te encuentren más rápido." : "para que puedas encontrar a tu profesor ideal rápidamente."}</p>
-                    <p>Éxitos en tus clases!</p>
-                </div>
-                </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                </html>`,
-                attachments: [
-                    {
-                        filename: 'logo.jpg',
-                        content: imageBuffer,
-                        encoding: 'base64',
-                        cid: 'logoImage'
-                    }
-                ]
-        };
-        // Enviar el correo electrónico
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return console.log(error);
+        if(rol!='admin'){
+            // Ruta de la imagen en tu ordenador
+            const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
+            // Leer la imagen como un buffer y convertirla a base64
+            const imageBuffer = fs.readFileSync(imagePath);
+            const imageBase64 = imageBuffer.toString('base64');
+            // Opciones del correo electrónico
+            const mailOptions = {
+                from: 'unirunir22@gmail.com', 
+                to: 'unirunir22@gmail.com', 
+                subject: 'Bienvenido a TeacherApp 😊',
+                html: `<html>
+                    <head>
+                        <style>
+                        .container {
+                            max-width: 1000px;
+                            margin: 0 auto;
+                            padding: 15px;
+                        }
+                        </style>
+                    </head>
+                    <body>
+                    <div class="container">
+                        <p>Estamos encantados de tenerte como ${rol == "prof" ? "profesor" : "alumno"}!</p>
+                        <p>No olvides completar tus datos personales ${rol == "prof" ? "y profesionales para que tus futuros alumnos te encuentren más rápido." : "para que puedas encontrar a tu profesor ideal rápidamente."}</p>
+                        <p>Éxitos en tus clases!</p>
+                    </div>
+                    </body>
+                        <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
+                    </html>`,
+                    attachments: [
+                        {
+                            filename: 'logo.jpg',
+                            content: imageBuffer,
+                            encoding: 'base64',
+                            cid: 'logoImage'
+                        }
+                    ]
             }
-            console.log('Correo electrónico enviado: ' + info.response);
-        })
+            // Enviar el correo electrónico
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    return console.log(error);
+                }
+                console.log('Correo electrónico enviado: ' + info.response);
+            })
+        }
         res.status(200).json(result);
 
     } catch (error) {
