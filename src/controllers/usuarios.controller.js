@@ -38,14 +38,14 @@ const register = async (req, res) => {
                 <head>
                     <style>
                     .container {
-                        max-width: 800px;
+                        max-width: 1000px;
                         margin: 0 auto;
                         padding: 15px;
                     }
                     </style>
                 </head>
                 <body>
-                <div>
+                <div class="container">
                     <p>Estamos encantados de tenerte como ${rol == "prof" ? "profesor" : "alumno"}!</p>
                     <p>No olvides completar tus datos personales ${rol == "prof" ? "y profesionales para que tus futuros alumnos te encuentren más rápido." : "para que puedas encontrar a tu profesor ideal rápidamente."}</p>
                     <p>Éxitos en tus clases!</p>
@@ -294,7 +294,7 @@ const insertAlumnoByProfesorId = async (req,res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
@@ -371,7 +371,7 @@ const insertClaseByProfesor = async (req, res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
@@ -449,7 +449,7 @@ const insertChatByUsersId = async (req, res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
@@ -518,7 +518,7 @@ const updateUsuario = async (req, res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
@@ -590,7 +590,7 @@ const updateAlumnoByProfesorId = async (req,res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
@@ -703,7 +703,7 @@ const deleteClaseByProfesorId = async (req, res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
@@ -776,7 +776,7 @@ const deleteAlumnoByProfesorId = async (req,res) => {
                     <head>
                         <style>
                         .container {
-                            max-width: 800px;
+                            max-width: 1000px;
                             margin: 0 auto;
                             padding: 15px;
                         }
