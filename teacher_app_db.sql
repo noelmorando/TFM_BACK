@@ -143,6 +143,7 @@ COLLATE = utf8mb4_unicode_ci;
 -- Table `teacherapp`.`conexion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teacherapp`.`conexion` (
+  `especialidades_id` INT NOT NULL,
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
