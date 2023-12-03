@@ -158,7 +158,7 @@ const updateUsuarioById = (id, { nombre, apellidos, mail, pass, foto, tel, pxh, 
  * @returns any
  */
 const updateAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
-    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ? AND especialidad_id = ?', [1,profesorId,alumnoId,especialidadId])
+    return db.query('UPDATE conexion SET activo=? where profesor_id = ? AND alumno_id = ? AND especialidades_id = ?', [1,profesorId,alumnoId,especialidadId])
 }
 /**
  * Elimina el usuario.
