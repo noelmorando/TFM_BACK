@@ -509,6 +509,7 @@ const insertChatByUsersId = async (req, res) => {
 const updateUsuario = async (req, res) => {
     try {
         const { usuarioId } = req.params
+        const {activo} = req.body
         const usuario_id = parseInt(usuarioId)
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
