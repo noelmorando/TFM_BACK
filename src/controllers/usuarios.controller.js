@@ -264,7 +264,7 @@ const insertEspecialidadByProfesor = async (req, res) => {
         const profesor_id = parseInt(profesorId)
         const { especialidades_id } = req.body
         if (!especialidades_id) {
-            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado" })
         }
         const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesor_id, especialidades_id)
         res.status(200).json(result)
@@ -358,11 +358,11 @@ const insertClaseByProfesor = async (req, res) => {
         const profesor_id = parseInt(profesorId)
         const { alumno_id, fecha,especialidades_id } = req.body
         if (!especialidades_id) {
-            return res.status(400).json({ fatal: "especialidades_id proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "especialidades_id proporcionado" })
         } else if (!alumno_id) {
-            return res.status(400).json({ fatal: "alumno_id no proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "alumno_id no proporcionado" })
         } else if (!fecha) {
-            return res.status(400).json({ fatal: "fecha no proporcionada en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
         const [result] = await UsuarioModel.insertClaseByProfesorId(profesor_id, req.body)
         // Ruta de la imagen en tu ordenador
@@ -436,11 +436,11 @@ const insertChatByUsersId = async (req, res) => {
         const profesor_id = parseInt(profesorId)
         const { alumno_id, comentarios } = req.body
         if (!alumno_id && !comentarios) {
-            return res.status(400).json({ fatal: "alumno_id y comentarios no proporcionados en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "alumno_id y comentarios no proporcionados" })
         } else if (!alumno_id) {
-            return res.status(400).json({ fatal: "alumno_id no proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "alumno_id no proporcionado" })
         } else if (!comentarios) {
-            return res.status(400).json({ fatal: "comentarios no proporcionada en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "comentarios no proporcionada" })
         }
         const [result] = await UsuarioModel.insertChatByUsersId(profesor_id, req.body)
         // Ruta de la imagen en tu ordenador
@@ -578,7 +578,7 @@ const updateAlumnoByProfesorId = async (req,res) => {
         const {profesorId,alumnoId} = req.params
         const profesor_id = parseInt(profesorId)
         if(!alumnoId){
-            return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "ID del alumno no proporcionado." })
         }
         const alumno_id = parseInt(alumnoId)
         const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id)
