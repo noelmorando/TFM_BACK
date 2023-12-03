@@ -273,20 +273,21 @@ const insertEspecialidadByProfesor = async (req, res) => {
     }
 }
 /**
- * Crea una petición de solicitud para que el profesor acepte al alumno. El Id del alumno es proporcionado en el body, mientras que el Id del profesor es tomado de la ruta.
+ * Crea una petición de solicitud para que el profesor acepte al alumno. 
  * @param {any} req 
  * @param {any} res 
  * @returns any
  */
 const insertAlumnoByProfesorId = async (req,res) => {
     try {
-        const {profesorId} = req.params
+        const {profesorId,alumnoId, especialidadId} = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId} = req.body
-        if(!alumnoId){
-            return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
+        const alumno_id = parseInt(alumnoId)
+        const especialidad_id = parseInt(especialidadId)
+        if(!alumno_id){
+            return res.status(400).json({ fatal: "ID del alumno no proporcionado" })
         }
-        const [result] = await UsuarioModel.insertAlumnosByProfesorId(profesor_id,alumnoId)
+        const [result] = await UsuarioModel.insertAlumnosByProfesorId(profesor_id,alumno_id,especialidad_id)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -509,7 +510,6 @@ const updateUsuario = async (req, res) => {
     try {
         const { usuarioId } = req.params
         const usuario_id = parseInt(usuarioId)
-        const {activo} = req.body
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
@@ -575,9 +575,8 @@ const updateUsuario = async (req, res) => {
  */
 const updateAlumnoByProfesorId = async (req,res) => {
     try {
-        const {profesorId} = req.params
+        const {profesorId,alumnoId} = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId} = req.body
         if(!alumnoId){
             return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
         }
@@ -656,19 +655,15 @@ const deleteUsuario = async (req, res) => {
     }
 }
 /**
- * Elimina una especialidad de un profesor, cuyo Id es profesorId, tomado de la ruta, y cuyo Id de la especialidad es especialidades_id, tomado del cuerpo de la solicitud.
+ * Elimina una especialidad de un profesor.
  * @param {any} req 
  * @param {any} res 
  */
 const deleteEspecialidadByUsuario = async (req, res) => {
     try {
-        const { profesorId } = req.params
+        const { profesorId, especialidadId } = req.params
         const profesor_id = parseInt(profesorId)
-        const { especialidades_id } = req.body
-        if (!especialidades_id) {
-            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado en el cuerpo de la solicitud." })
-        }
-        const esp_id = parseInt(especialidades_id)
+        const esp_id = parseInt(especialidadId)
         const [result] = await UsuarioModel.deleteEspecialidadByUsuarioById(profesor_id, esp_id)
         res.status(200).json(result)
     } catch (error) {
@@ -684,18 +679,18 @@ const deleteEspecialidadByUsuario = async (req, res) => {
  */
 const deleteClaseByProfesorId = async (req, res) => {
     try {
-        const { profesorId } = req.params
+        const { profesorId, alumnoId, especialidadId, fecha } = req.params
         const profesor_id = parseInt(profesorId)
-        const { alumno_id, fecha, especialidades_id } = req.body
         if (!especialidades_id) {
-            return res.status(400).json({ fatal: "especialidades_id no proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "especialidades_id no proporcionado" })
         } else if (!alumno_id) {
-            return res.status(400).json({ fatal: "alumno_id no proporcionado en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "alumno_id no proporcionado" })
         } else if (!fecha) {
-            return res.status(400).json({ fatal: "fecha no proporcionada en el cuerpo de la solicitud." })
+            return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
-        const alumnoId = parseInt(alumno_id)
-        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha, especialidades_id)
+        const alumno_id = parseInt(alumnoId)
+        const esp_id = parseInt(especialidadId)
+        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha, esp_id)
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
@@ -761,14 +756,14 @@ const deleteClaseByProfesorId = async (req, res) => {
  */
 const deleteAlumnoByProfesorId = async (req,res) => {
     try {
-        const {profesorId} = req.params
+        const {profesorId,alumnoId,especialidadId} = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId,especialidadId} = req.body
-        if(!alumnoId){
-            return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
+        if(!alumnoId || !especialidadId){
+            return res.status(400).json({ fatal: "ID del alumno o ID de la especialidad no proporcionados" })
         }
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id,especialidadId)
+        const especialidad_id = parseInt(especialidadId)
+        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id,especialidad_id)
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64

@@ -20,10 +20,10 @@ router.post('/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosCont
 router.post('/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
 router.post(':profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof']), UsuariosController.insertAlumnoByProfesorId)
 router.put("/:usuarioId", checkToken, UsuariosController.updateUsuario)
-router.put(':profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof']), UsuariosController.updateAlumnoByProfesorId)
-router.delete('/:profesorId/especialidades', checkToken, checkRole(['prof']), UsuariosController.deleteEspecialidadByUsuario)
+router.put(':profesorId&:alumnoId',checkToken, checkRole(['prof']), UsuariosController.updateAlumnoByProfesorId)
+router.delete('/:profesorId&especialidadId', checkToken, checkRole(['prof']), UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/:usuarioId', checkToken, checkRole(['admin']), UsuariosController.deleteUsuario)
-router.delete('/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosController.deleteClaseByProfesorId)
+router.delete('/:profesorId&:alumnoId&:especialidadId&:fecha', checkToken, checkRole(['prof']), UsuariosController.deleteClaseByProfesorId)
 router.delete('/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.deleteAlumnoByProfesorId)
 
 module.exports = router;
