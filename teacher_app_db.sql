@@ -19,6 +19,7 @@ USE `teacherapp` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `teacherapp`.`especialidades` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `foto` LONGTEXT NOT NULL,
   `especialidad` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
@@ -226,3 +227,19 @@ INSERT INTO `teacherapp`.`usuarios` (`nombre`, `apellidos`, `mail`, `pass`, `fot
 INSERT INTO `teacherapp`.`usuarios` (`nombre`, `apellidos`, `mail`, `pass`, `foto`, `rol`, `tel`, `activo`,`pxh`,`experiencia`,`lat`,`lon`) VALUES ('Maria Luisa', 'Serafin', 'mluisaserafil@gmail.com', '$2a$08$Wnlc/fuiRr2cU9UYr2ZV3.pPziwyqTnqeKrkrgPfsj/8/AAO9mCyq', 'https://opuspeoplesolutions.co.uk/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMG1jSFE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--ff76dc3e37c2b0a25095c3d0622f0ed47e55ed7c/Blog%20Pic%20(1).png', 'prof', '123456789', '0',15.40,26,40.434357, -3.701118);
 INSERT INTO `teacherapp`.`usuarios` (`nombre`, `apellidos`, `mail`, `pass`, `foto`, `rol`, `tel`, `activo`,`pxh`,`experiencia`,`lat`,`lon`) VALUES ('Montaña', 'Núñez de Balboa', 'montananunezdebalboa@gmail.com', '$2a$08$Wnlc/fuiRr2cU9UYr2ZV3.pPziwyqTnqeKrkrgPfsj/8/AAO9mCyq', 'https://www.workitdaily.com/media-library/a-young-teacher-grades-an-assignment-from-one-of-her-students.jpg?id=22146397&width=1200&height=800&quality=85&coordinates=0%2C0%2C0%2C1', 'prof', '123456789', '0',27.80,28,40.394494, -3.667816);
 INSERT INTO `teacherapp`.`usuarios` (`nombre`, `apellidos`, `mail`, `pass`, `foto`, `rol`, `tel`, `activo`,`pxh`,`experiencia`,`lat`,`lon`) VALUES ('Francisco', 'Ruiz Jimenez', 'franciscoruizjimenez@gmail.com', '$2a$08$Wnlc/fuiRr2cU9UYr2ZV3.pPziwyqTnqeKrkrgPfsj/8/AAO9mCyq', 'https://i.cbc.ca/1.6724242.1674694774!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/thirugnanasambanthar-thirukkumaran.jpg', 'prof', '123456789', '0',43,29,40.413056, -3.712276);
+
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Historia', 'https://www.kcl.ac.uk/ImportedImages/Schools/SSPP/Warstudies/WarStudies/cgsIMAGES/adventure-ancient-antique-697662.x88fbe810.jpg?w=780&h=519&crop=780,440,0,40');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Análisis de datos', 'https://www.dqsconsulting.com/wp-content/uploads/2021/09/como-hacer-un-analisis-de-datos.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Biología', 'https://www.bolton.ac.uk/assets/What-is-Medical-Biology-Bolton-Uni__ResizedImageWzYwMCwzMzhd.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Geología', 'https://concepto.de/wp-content/uploads/2019/08/geologia-ciencia-suelo-tierra-e1566779853953.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Física', 'https://okdiario.com/img/2017/02/01/fisica-fuerzas-fundamentales-655x368.jpeg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Química', 'https://api.new.buscatuprofesor.es/news_image/Ql/RE/QlREvqSO7VMBp9RXFYNpkeyebgA7D40L1VqORGqB.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Tecnología', 'https://www.eltiempo.com/files/image_1200_680/uploads/2019/12/07/5dec47012d257.jpeg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Latín', 'https://fundacioncomillas.es/wp-content/uploads/2023/06/tablilla-en-latin.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Álgebra', 'https://dropinblog.net/34249715/files/featured/algebra_que_es.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Lengua', 'https://sanjuanbosco.es/wp-content/uploads/2021/04/lengua3.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Inglés', 'https://www.britishcouncil.org.mx/sites/default/files/banderas_ingles_britanico_y_americano_.png');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Arte', 'https://media.admagazine.com/photos/618a6acacc7069ed5077ca7c/16:9/w_2560%2Cc_limit/69052.jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Informática', 'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/07/origen-nombres-informatica-nunca-hubieras-imaginado_2.jpg?tf=3840x');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Cálculo', 'https://media.tutellus.com/libraries/45/01/lib/1370151995235.jpg?size=854x493s&ext=jpg');
+INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Música', 'https://concepto.de/wp-content/uploads/2020/03/musica-e1584123209397.jpg');

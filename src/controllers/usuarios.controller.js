@@ -13,10 +13,15 @@ const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
-        const { nombre, apellidos, mail,rol } = req.body;
-
+        let result
         // Inserta el usuario en la base de datos
-        const [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol });
+        if (rol=="prof"){
+            const { nombre, apellidos, mail,rol, foto, tel, pxh, experiencia, lat, lon } = req.body
+            [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol, foto, tel, pxh, experiencia, lat, lon })
+        }else{
+            const { nombre, apellidos, mail,rol } = req.body;
+            [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol })
+        }
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -106,8 +111,11 @@ const login = async (req, res) => {
         res.status(500).json({ fatal: error.message });
     }
 };
-
-
+/**
+ * Recupera todos los usuarios.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const getAllUsuarios = async (req, res) => {
     try {
         const [result] = await UsuarioModel.SelectAllUsuarios()
@@ -116,7 +124,11 @@ const getAllUsuarios = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
-
+/**
+ * Recupera todos los usuarios por página.
+ * @param {any} req 
+ * @param {any} res 
+ */
 const getAllUsuariosByPage = async (req, res) => {
     const {p = 1} = req.query;
     const {limit = 10} = req.query;

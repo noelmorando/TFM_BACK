@@ -43,7 +43,6 @@ const selectChatByUsuariosId = (profesorId, alumnoId) => {
 const selectEspecialidadesByProfesorId = (profesorId) => {
     return db.query('SELECT e.* FROM usuarios_has_especialidades ue JOIN especialidades e ON ue.especialidades_id = e.id WHERE ue.profesor_id = ?',[profesorId])
 }
-
 /**
  * Recupera una especialidad determinada de un profesor determinado.
  * @param {number} profesorId 
@@ -98,10 +97,10 @@ const selectClasesByUsuarioId = (usuarioId) => {
  * @param {any} datos datos del nuevo usuario
  * @returns any
  */
-const insertUsuario = ({nombre, apellidos,  mail, pass, rol}) => {
+const insertUsuario = ({nombre, apellidos,  mail, pass, rol, foto, tel, pxh, experiencia, lat, lon}) => {
     if(rol=="prof"){
-        return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol,activo) VALUES (?,?,?,?,?,?)',
-        [nombre, apellidos, mail, pass, rol,0]);
+        return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol,activo,foto, tel, pxh, experiencia, lat, lon) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
+        [nombre, apellidos, mail, pass, rol,0,foto, tel, pxh, experiencia, lat, lon]);
     }
     return db.query('insert into usuarios (nombre, apellidos, mail, pass, rol) VALUES (?,?,?,?,?)',
         [nombre, apellidos, mail, pass, rol]);
