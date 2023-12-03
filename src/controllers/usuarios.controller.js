@@ -575,13 +575,14 @@ const updateUsuario = async (req, res) => {
  */
 const updateAlumnoByProfesorId = async (req,res) => {
     try {
-        const {profesorId,alumnoId} = req.params
+        const {profesorId,alumnoId, especialidadId} = req.params
         const profesor_id = parseInt(profesorId)
         if(!alumnoId){
             return res.status(400).json({ fatal: "ID del alumno no proporcionado." })
         }
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id)
+        const esp_id = parseInt(especialidadId)
+        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id,esp_id)
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
