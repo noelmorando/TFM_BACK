@@ -5,9 +5,7 @@ const { checkRole, preAuthMiddleware, checkToken } = require('../../middlewares/
 router.get('/todos', checkToken, UsuariosController.getAllUsuarios);
 router.get('/todos/pag', checkToken, UsuariosController.getAllUsuariosByPage);
 router.get('/:usuarioId', checkToken, UsuariosController.getUsuarioById);
-
 router.get('/:usuarioId/clases', UsuariosController.getClasesByUsuarioId);
-
 router.get('/:profesorId/especialidades', checkToken, checkRole(['prof']), UsuariosController.getEspecialidadByProfesorId)
 router.get('/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
 router.get('/:profesorId/puntuaciones', checkToken, checkRole(['prof']), UsuariosController.getPuntuacionesByProfesorId)
