@@ -24,6 +24,6 @@ router.put('/:profesorId/alumnos',checkToken, checkRole(['prof']), UsuariosContr
 router.delete('/:profesorId/especialidades', checkToken, checkRole(['prof']), UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/:usuarioId', checkToken, checkRole(['admin']), UsuariosController.deleteUsuario)
 router.delete('/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosController.deleteClaseByProfesorId)
-router.delete('/:profesorId/alumnos',checkToken, checkRole(['prof']), UsuariosController.deleteAlumnoByProfesorId)
+router.delete('/:profesorId/alumnos',checkToken, checkRole(['prof','alumn']), UsuariosController.deleteAlumnoByProfesorId)
 
 module.exports = router;
