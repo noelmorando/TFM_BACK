@@ -136,7 +136,7 @@ const insertClaseByProfesorId = (profesorId,{alumno_id, fecha,especialidades_id}
 /**
  * Agrega un comentario al chat.
  * @param {number} profesorId 
- * @param {any} param1 
+ * @param {any} param1  
  * @returns any
  */
 const insertChatByUsersId = (profesorId,{alumno_id,comentarios}) => {
