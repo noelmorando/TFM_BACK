@@ -242,3 +242,85 @@ INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Arte
 INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Informática', 'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/07/origen-nombres-informatica-nunca-hubieras-imaginado_2.jpg?tf=3840x');
 INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Cálculo', 'https://media.tutellus.com/libraries/45/01/lib/1370151995235.jpg?size=854x493s&ext=jpg');
 INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Música', 'https://concepto.de/wp-content/uploads/2020/03/musica-e1584123209397.jpg');
+
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('16', '15', '4/12/2023', '1');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('17', '14', '5/12/2023', '2');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('18', '13', '6/12/2023', '3');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('19', '12', '7/12/2023', '4');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('20', '11', '8/12/2023', '5');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('21', '10', '9/12/2023', '6');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('22', '9', '10/12/2023', '7');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('23', '8', '11/12/2023', '8');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('24', '7', '12/12/2023', '9');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('25', '6', '13/12/2023', '10');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('26', '5', '14/12/2023', '11');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('27', '4', '15/12/2023', '12');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('28', '3', '16/12/2023', '13');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('29', '2', '17/12/2023', '14');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('30', '1', '18/12/2023', '15');
+
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('16', '15', '1', '1');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('17', '14', '1', '2');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('18', '13', '1', '3');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('19', '12', '1', '4');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('20', '11', '1', '5');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('21', '10', '1', '6');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('22', '9', '1', '7');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('23', '8', '1', '8');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('24', '7', '1', '9');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('25', '6', '1', '10');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('26', '5', '1', '11');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('27', '4', '1', '12');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('28', '3', '1', '13');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('29', '2', '1', '14');
+INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('30', '1', '1', '15');
+
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('16', '15', '4', 'Muy buen profesor!');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('17', '14', '3', 'Me está costando entenderle.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('18', '13', '5', 'Excelente! Recomendado 100%');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('19', '12', '2', 'No lo recomiendo.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('20', '11', '3', 'Cuesta pero ahí vamos.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('21', '10', '5', 'Estoy aprobando todo con este profe!');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('22', '9', '3', 'Tengo pocas clases pero vamos bien.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('23', '8', '5', 'Porque no puedo ponerle 10 estrellas! Salvó mi año!');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('24', '7', '2', 'No le entiendo nada.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('25', '6', '4', 'Por el momento, estoy aprobando!');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('26', '5', '3', 'Bueno..bien.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('27', '4', '5', 'Excelente!');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('28', '3', '3', 'Me dice que la culpa la tengo yo porque nunca llevo los deberes hechos.');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('29', '2', '4', 'Pocas clases pero todo bien!!');
+INSERT INTO `teacherapp`.`puntuaciones` (`profesor_id`, `alumno_id`, `puntuacion`, `comentarios`) VALUES ('30', '1', '5', 'Materia aprobada! Ahora vamos por el examen final :D');
+
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('16', '1');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('17', '2');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('18', '3');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('19', '4');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('20', '5');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('21', '6');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('22', '7');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('23', '8');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('24', '9');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('25', '10');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('26', '11');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('27', '12');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('28', '13');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('29', '14');
+INSERT INTO `teacherapp`.`usuarios_has_especialidades` (`profesor_id`, `especialidades_id`) VALUES ('30', '15');
+
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('16', '15', 'Hola profe! Puede ayudarme con un problema?');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('16', '15', 'Si, claro. Envíamelo por aquí, o coordinamos una fecha nueva para analizarlo juntos.');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('17', '14', 'Hola profe! Podemos coordinar una nueva clase?');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('17', '14', 'Por supuesto, dime varias opciones de disponibilidad y la coordinamos.');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('18', '13', 'Profe, no creo que pueda asistir a la próxima clase. Podemos reagendarla?');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('18', '13', 'Claro, dime cuándo podrías.');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('19', '12', 'Hola profe. Perdón, pero no entiendo ni cómo empezar a analizar el ejercicio que me ha dado.');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('19', '12', 'No te preocupes, lo hacemos juntos la próxima clase.');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('20', '11', 'Ayuda profe! Esto me está matando.');
+INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('20', '11', 'Necesitas utilizar las leyes de Newton. https://www.significados.com/leyes-de-newton/ La segunda ley es la que necesitas aplicar.');
+
+
+
+
+
+
+
