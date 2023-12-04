@@ -4,7 +4,6 @@ const { checkRole, preAuthMiddleware, checkToken } = require('../../middlewares/
 
 router.get('/todos', UsuariosController.getAllUsuarios);
 router.get('/todos/pag', UsuariosController.getAllUsuariosByPage);
-router.get('/:usuarioId', UsuariosController.getUsuarioById);
 router.get('/clases/:usuarioId',checkToken, checkRole(['prof', 'alumn']), UsuariosController.getClasesByUsuarioId);
 router.get('/especialidades/:profesorId', checkToken, checkRole(['prof']), UsuariosController.getEspecialidadByProfesorId)
 router.get('/chats/:profesorId&:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
@@ -23,5 +22,6 @@ router.put('/clases/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole
 router.delete('/especialidades/:profesorId&:especialidadId', checkToken, checkRole(['prof']), UsuariosController.deleteEspecialidadByUsuario)
 router.delete('/clases/:profesorId&:alumnoId&:especialidadId&:fecha', checkToken, checkRole(['prof']), UsuariosController.deleteClaseByProfesorId)
 router.delete('/conexion/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.deleteAlumnoByProfesorId)
+router.get('/:usuarioId', UsuariosController.getUsuarioById);
 
 module.exports = router;
