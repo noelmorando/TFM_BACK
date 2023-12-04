@@ -2,15 +2,15 @@ const router = require('express').Router();
 const UsuariosController = require('../../controllers/usuarios.controller');
 const { checkRole, preAuthMiddleware, checkToken } = require('../../middlewares/auth.middleware');
 
-router.get('/todos', checkToken, UsuariosController.getAllUsuarios);
-router.get('/todos/pag', checkToken, UsuariosController.getAllUsuariosByPage);
-router.get('/:usuarioId', checkToken, UsuariosController.getUsuarioById);
-router.get('/clases/:usuarioId', UsuariosController.getClasesByUsuarioId);
+router.get('/todos', UsuariosController.getAllUsuarios);
+router.get('/todos/pag', UsuariosController.getAllUsuariosByPage);
+router.get('/:usuarioId', UsuariosController.getUsuarioById);
+router.get('/clases/:usuarioId',checkToken, checkRole(['prof', 'alumn']), UsuariosController.getClasesByUsuarioId);
 router.get('/especialidades/:profesorId', checkToken, checkRole(['prof']), UsuariosController.getEspecialidadByProfesorId)
 router.get('/chats/:profesorId&:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
-router.get('/puntuaciones/:profesorId', checkToken, checkRole(['prof']), UsuariosController.getPuntuacionesByProfesorId)
-router.get('/clases/:profesorId&:alumnoId', checkToken, checkRole(['prof']), UsuariosController.getClasesByUsuariosId)
-router.get('/alumnos/:profesorId',checkToken, checkRole(['prof,alumn']), UsuariosController.getAlumnosByProfesorId)
+router.get('/puntuaciones/:profesorId', UsuariosController.getPuntuacionesByProfesorId)
+router.get('/clases/:profesorId&:alumnoId', checkToken, checkRole(['prof','alumn']), UsuariosController.getClasesByUsuariosId)
+router.get('/alumnos/:profesorId',checkToken, checkRole(['prof','alumn']), UsuariosController.getAlumnosByProfesorId)
 router.post('/register', preAuthMiddleware, UsuariosController.register)
 router.post('/login', preAuthMiddleware, UsuariosController.login)
 router.post('especialidades/:profesorId&:especialidadId', checkToken, checkRole(['prof']), UsuariosController.insertEspecialidadByProfesor)
