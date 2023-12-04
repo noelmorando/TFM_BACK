@@ -82,7 +82,14 @@ const selectAlumnosByprofesorId = (profesorId) => {
 const selectClasesByUsuariosId = (profesorId, alumnoId, especialidadId) => {
     return db.query('SELECT c.* FROM clases c WHERE (c.profesor_id = ? AND c.alumno_id = ? AND especialidades_id = ?)', [profesorId,alumnoId, especialidadId])
 }
-
+/**
+ * trae todos los datos del profesor desde la tabla conexion
+ * @param {number} profesorId 
+ * @returns any
+ */
+const selectProfesorByConexion = (profesorId) => {
+    return db.query('SELECT c.* FROM conexion c WHERE (c.profesor_id = ?)', [profesorId])
+}
 /**
  * Recupera las clases que tiene un usuario (sea alumno o profesor) pasando como parámetros usuarioId.
  * @param {number} usuarioId 
@@ -198,4 +205,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especiali
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
 }
 
-module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId}
+module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion}

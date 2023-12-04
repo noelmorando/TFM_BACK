@@ -156,7 +156,21 @@ const getUsuarioById = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
-
+/**
+ * trae los datos del profesor a traves de la tabla conexion.
+ * @param {any} req 
+ * @param {any} res 
+ */
+const getInfoProfesorByConexion = async (req,res) => {
+    try {
+        const {profesorId} = req.params
+        const profesor_id = parseInt(profesorId)
+        const [result] = await UsuarioModel.selectProfesorByConexion(profesor_id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
 /**
  * Recupera las clases de un usuario (sea profesor o alumno), enviando como parámetros usuarioId.
  * @param {any} req 
@@ -824,4 +838,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
