@@ -13,19 +13,19 @@ const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
-        const { nombre, apellidos, mail,rol } = req.body;
+        const { nombre, apellidos, mail, rol } = req.body;
 
         // Inserta el usuario en la base de datos
-        const [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol });
+        const [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword, rol });
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
-        if(rol!='admin'){
+        if (rol != 'admin') {
             // Ruta de la imagen en tu ordenador
             const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
             // Leer la imagen como un buffer y convertirla a base64
@@ -33,8 +33,8 @@ const register = async (req, res) => {
             const imageBase64 = imageBuffer.toString('base64');
             // Opciones del correo electrónico
             const mailOptions = {
-                from: 'unirunir22@gmail.com', 
-                to: 'unirunir22@gmail.com', 
+                from: 'unirunir22@gmail.com',
+                to: 'unirunir22@gmail.com',
                 subject: 'Bienvenido a TeacherApp 😊',
                 html: `<html>
                     <head>
@@ -55,14 +55,14 @@ const register = async (req, res) => {
                     </body>
                         <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
                     </html>`,
-                    attachments: [
-                        {
-                            filename: 'logo.jpg',
-                            content: imageBuffer,
-                            encoding: 'base64',
-                            cid: 'logoImage'
-                        }
-                    ]
+                attachments: [
+                    {
+                        filename: 'logo.jpg',
+                        content: imageBuffer,
+                        encoding: 'base64',
+                        cid: 'logoImage'
+                    }
+                ]
             }
             // Enviar el correo electrónico
             transporter.sendMail(mailOptions, (error, info) => {
@@ -101,7 +101,7 @@ const login = async (req, res) => {
             success: 'Login correcto!!',
             token: createToken(usuario)
         });
-        
+
     } catch (error) {
         res.status(500).json({ fatal: error.message });
     }
@@ -118,11 +118,11 @@ const getAllUsuarios = async (req, res) => {
 }
 
 const getAllUsuariosByPage = async (req, res) => {
-    const {p = 1} = req.query;
-    const {limit = 10} = req.query;
+    const { p = 1 } = req.query;
+    const { limit = 10 } = req.query;
 
     try {
-        const [result] = await UsuarioModel.SelectAllUsuarios(parseInt(p),parseInt(limit))
+        const [result] = await UsuarioModel.SelectAllUsuarios(parseInt(p), parseInt(limit))
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -266,21 +266,21 @@ const insertEspecialidadByProfesor = async (req, res) => {
  * @param {any} res 
  * @returns any
  */
-const insertAlumnoByProfesorId = async (req,res) => {
+const insertAlumnoByProfesorId = async (req, res) => {
     try {
-        const {profesorId} = req.params
+        const { profesorId } = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId} = req.body
-        if(!alumnoId){
+        const { alumnoId } = req.body
+        if (!alumnoId) {
             return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
         }
-        const [result] = await UsuarioModel.insertAlumnosByProfesorId(profesor_id,alumnoId)
+        const [result] = await UsuarioModel.insertAlumnosByProfesorId(profesor_id, alumnoId)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Ruta de la imagen en tu ordenador
@@ -290,8 +290,8 @@ const insertAlumnoByProfesorId = async (req,res) => {
         const imageBase64 = imageBuffer.toString('base64');
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
+            to: 'unirunir22@gmail.com',
             subject: 'Nueva solicitud de conexión.',
             html: `<html>
                     <head>
@@ -312,14 +312,14 @@ const insertAlumnoByProfesorId = async (req,res) => {
                     </body>
                     <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
                     </html>`,
-                    attachments: [
-                        {
-                            filename: 'logo.jpg',
-                            content: imageBuffer,
-                            encoding: 'base64',
-                            cid: 'logoImage'
-                        }
-                    ]
+            attachments: [
+                {
+                    filename: 'logo.jpg',
+                    content: imageBuffer,
+                    encoding: 'base64',
+                    cid: 'logoImage'
+                }
+            ]
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -343,7 +343,7 @@ const insertClaseByProfesor = async (req, res) => {
     try {
         const { profesorId } = req.params
         const profesor_id = parseInt(profesorId)
-        const { alumno_id, fecha,especialidades_id } = req.body
+        const { alumno_id, fecha, especialidades_id } = req.body
         if (!especialidades_id) {
             return res.status(400).json({ fatal: "especialidades_id proporcionado en el cuerpo de la solicitud." })
         } else if (!alumno_id) {
@@ -361,13 +361,13 @@ const insertClaseByProfesor = async (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
             to: 'unirunir22@gmail.com', //al alumno
             subject: 'Nueva clase agendada.',
             html: `<html>
@@ -439,14 +439,14 @@ const insertChatByUsersId = async (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
+            to: 'unirunir22@gmail.com',
             subject: 'Nuevo mensaje en el foro.',
             html: `<html>
                     <head>
@@ -497,14 +497,16 @@ const updateUsuario = async (req, res) => {
     try {
         const { usuarioId } = req.params
         const usuario_id = parseInt(usuarioId)
-        const {activo} = req.body
-        const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
+        const { activo } = req.body
+        const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
+        const { nombre, apellidos, mail, rol } = req.body;
+        const [result] = await UsuarioModel.updateUsuarioById(usuario_id, { ...req.body, pass: hashedPassword })
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Ruta de la imagen en tu ordenador
@@ -514,9 +516,9 @@ const updateUsuario = async (req, res) => {
         const imageBase64 = imageBuffer.toString('base64');
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
             to: 'unirunir22@gmail.com', //al alumno
-            subject: `${activo===false ? "Te vamos a extrañar 😔" : "Ya estás dado de alta!"}`,
+            subject: `${activo === false ? "Te vamos a extrañar 😔" : "Ya estás dado de alta!"}`,
             html: `<html>
                     <head>
                         <style>
@@ -529,7 +531,7 @@ const updateUsuario = async (req, res) => {
                     </head>
                     <body>
                         <div class="container">
-                        ${activo===false ? "<p>Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.</p><p>Esperemos que no sea un adiós sino un hasta pronto!</p>" : "<p>Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases.</p><p>Te deseamos muchos éxitos!</p>"}
+                        ${activo === false ? "<p>Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.</p><p>Esperemos que no sea un adiós sino un hasta pronto!</p>" : "<p>Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases.</p><p>Te deseamos muchos éxitos!</p>"}
                         </div>
                     </body>
                     <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
@@ -561,16 +563,16 @@ const updateUsuario = async (req, res) => {
  * @param {any} res 
  * @returns any
  */
-const updateAlumnoByProfesorId = async (req,res) => {
+const updateAlumnoByProfesorId = async (req, res) => {
     try {
-        const {profesorId} = req.params
+        const { profesorId } = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId} = req.body
-        if(!alumnoId){
+        const { alumnoId } = req.body
+        if (!alumnoId) {
             return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
         }
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id)
+        const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id, alumno_id)
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
@@ -580,13 +582,13 @@ const updateAlumnoByProfesorId = async (req,res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
             to: 'unirunir22@gmail.com', //al alumno
             subject: 'Solicitud de conexión aceptada.',
             html: `<html>
@@ -693,13 +695,13 @@ const deleteClaseByProfesorId = async (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
             to: 'unirunir22@gmail.com', //al alumno
             subject: 'Clase suspendida.',
             html: `<html>
@@ -747,16 +749,16 @@ const deleteClaseByProfesorId = async (req, res) => {
  * @param {any} res 
  * @returns any
  */
-const deleteAlumnoByProfesorId = async (req,res) => {
+const deleteAlumnoByProfesorId = async (req, res) => {
     try {
-        const {profesorId} = req.params
+        const { profesorId } = req.params
         const profesor_id = parseInt(profesorId)
-        const {alumnoId,especialidadId} = req.body
-        if(!alumnoId){
+        const { alumnoId, especialidadId } = req.body
+        if (!alumnoId) {
             return res.status(400).json({ fatal: "ID del alumno no proporcionado en el cuerpo de la solicitud." })
         }
         const alumno_id = parseInt(alumnoId)
-        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id,especialidadId)
+        const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id, alumno_id, especialidadId)
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
@@ -766,13 +768,13 @@ const deleteAlumnoByProfesorId = async (req,res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'unirunir22@gmail.com', 
-                pass: 'vwdq swox luov icis' 
+                user: 'unirunir22@gmail.com',
+                pass: 'vwdq swox luov icis'
             }
         })
         // Opciones del correo electrónico
         const mailOptions = {
-            from: 'unirunir22@gmail.com', 
+            from: 'unirunir22@gmail.com',
             to: 'unirunir22@gmail.com', //al alumno
             subject: 'Solicitud de conexión rechazada.',
             html: `<html>
@@ -815,4 +817,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register, insertAlumnoByProfesorId, updateAlumnoByProfesorId, deleteAlumnoByProfesorId }
