@@ -119,7 +119,7 @@ const insertUsuario = ({nombre, apellidos,  mail, pass, rol, foto, tel, pxh, exp
  * @returns any
  */
 const insertAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
-    return db.query('INSERT INTO conexion (profesor_id, alumno_id, activo,especialidad_id) VALUES (?, ?, ?,?)',[profesorId,alumnoId,0,especialidadId])
+    return db.query('INSERT INTO conexion (profesor_id, alumno_id, activo,especialidades_id) VALUES (?, ?, ?,?)',[profesorId,alumnoId,0,especialidadId])
 }
 /**
  * Agrega una especialidad nueva a un profesor cuyo Id es profesorId, y cuyo Id de la especialidad es especialidadId.
