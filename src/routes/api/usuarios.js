@@ -10,7 +10,7 @@ router.get('/conexion/:profesorId',checkToken, checkRole(['prof', 'alumn']), Usu
 router.get('/especialidades/:profesorId', checkToken, checkRole(['prof','alumn']), UsuariosController.getEspecialidadByProfesorId)
 router.get('/chats/:profesorId&:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
 router.get('/puntuaciones/:profesorId', UsuariosController.getPuntuacionesByProfesorId)
-router.get('/clases/:profesorId&:alumnoId', checkToken, checkRole(['prof','alumn']), UsuariosController.getClasesByUsuariosId)
+router.get('/clases/:profesorId&:alumnoId&:especialidadId', checkToken, checkRole(['prof','alumn']), UsuariosController.getClasesByUsuariosId)
 router.get('/alumnos/:profesorId',checkToken, checkRole(['prof','alumn']), UsuariosController.getAlumnosByProfesorId)
 router.post('/register', preAuthMiddleware, UsuariosController.register)
 router.post('/login', preAuthMiddleware, UsuariosController.login)
@@ -18,7 +18,7 @@ router.post('especialidades/:profesorId&:especialidadId', checkToken, checkRole(
 router.post('/agenda/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosController.insertClaseByProfesor)
 router.post('/comentario/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
 router.post('/solicitud/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.insertAlumnoByProfesorId)
-router.put("/:usuarioId", checkToken, UsuariosController.updateUsuario)
+router.put("actualizar/:usuarioId", checkToken, UsuariosController.updateUsuario)
 router.put('/clases/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.updateAlumnoByProfesorId)
 //pendiente
 router.delete('/especialidades/:profesorId&:especialidadId', checkToken, checkRole(['prof']), UsuariosController.deleteEspecialidadByUsuario)

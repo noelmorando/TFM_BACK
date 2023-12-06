@@ -255,10 +255,9 @@ const getAlumnosByProfesorId = async (req, res) => {
  */
 const getClasesByUsuariosId = async (req, res) => {
     try {
-        const { profesorId, alumnoId } = req.params
+        const { profesorId, alumnoId,especialidadId } = req.params
         const profesor_id = parseInt(profesorId)
         const alumno_id = parseInt(alumnoId)
-        const especialidadId = req.body
         const especialidades_id = parseInt(especialidadId)
         const [result] = await UsuarioModel.selectClasesByUsuariosId(profesor_id, alumno_id, especialidades_id)
         res.status(200).json(result)
