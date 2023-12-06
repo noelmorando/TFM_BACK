@@ -32,11 +32,6 @@ const register = async (req, res) => {
             }
         })
         if(rol!='admin'){
-            // Ruta de la imagen en tu ordenador
-            const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-            // Leer la imagen como un buffer y convertirla a base64
-            const imageBuffer = fs.readFileSync(imagePath);
-            const imageBase64 = imageBuffer.toString('base64');
             // Opciones del correo electrónico
             const mailOptions = {
                 from: 'unirunir22@gmail.com', 
@@ -59,16 +54,8 @@ const register = async (req, res) => {
                         <p>Éxitos en tus clases!</p>
                     </div>
                     </body>
-                        <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-                    attachments: [
-                        {
-                            filename: 'logo.jpg',
-                            content: imageBuffer,
-                            encoding: imageBase64,
-                            cid: 'logoImage'
-                        }
-                    ]
+                    <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                    </html>`
             }
             // Enviar el correo electrónico
             transporter.sendMail(mailOptions, (error, info) => {
@@ -310,11 +297,6 @@ const insertAlumnoByProfesorId = async (req,res) => {
                 pass: 'vwdq swox luov icis' 
             }
         })
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
@@ -337,16 +319,8 @@ const insertAlumnoByProfesorId = async (req,res) => {
                         <p>Entra a la sección "Mis Alumnos" para aceptar o rechazar al alumno.</p>
                         </div>
                     </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-                    attachments: [
-                        {
-                            filename: 'logo.jpg',
-                            content: imageBuffer,
-                            encoding: imageBase64,
-                            cid: 'logoImage'
-                        }
-                    ]
+                    <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                    </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -379,12 +353,6 @@ const insertClaseByProfesor = async (req, res) => {
             return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
         const [result] = await UsuarioModel.insertClaseByProfesorId(profesor_id, req.body)
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
-        // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -414,16 +382,8 @@ const insertClaseByProfesor = async (req, res) => {
                         <p>Entra a la sección "Mis Clases" para ver la fecha de la clase.</p>
                         </div>
                     </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-            attachments: [
-                {
-                    filename: 'logo.jpg',
-                    content: imageBuffer,
-                    encoding: imageBase64,
-                    cid: 'logoImage'
-                }
-            ]
+                    <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                    </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -457,12 +417,7 @@ const insertChatByUsersId = async (req, res) => {
             return res.status(400).json({ fatal: "comentarios no proporcionada" })
         }
         const [result] = await UsuarioModel.insertChatByUsersId(profesor_id, req.body)
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
-        // Configurar nodemailer con las credenciales de Gmail
+
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -491,16 +446,8 @@ const insertChatByUsersId = async (req, res) => {
                         <p>Se ha agregado un nuevo mensaje en el foro.\nMensaje:${comentarios}</p>
                         </div>
                     </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-            attachments: [
-                {
-                    filename: 'logo.jpg',
-                    content: imageBuffer,
-                    encoding: imageBase64,
-                    cid: 'logoImage'
-                }
-            ]
+                    <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                    </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -534,11 +481,6 @@ const updateUsuario = async (req, res) => {
                 pass: 'vwdq swox luov icis' 
             }
         })
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
@@ -559,16 +501,8 @@ const updateUsuario = async (req, res) => {
                         ${activo===false ? "<p>Lamentamos que debas irte de nuestra página, pero siempre serás bienvenido.</p><p>Esperemos que no sea un adiós sino un hasta pronto!</p>" : "<p>Nuestros admins ya te han dado de alta para que puedas comenzar a dar clases.</p><p>Te deseamos muchos éxitos!</p>"}
                         </div>
                     </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-            attachments: [
-                {
-                    filename: 'logo.jpg',
-                    content: imageBuffer,
-                    encoding: imageBase64,
-                    cid: 'logoImage'
-                }
-            ]
+                    <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                    </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -598,11 +532,7 @@ const updateAlumnoByProfesorId = async (req,res) => {
         const alumno_id = parseInt(alumnoId)
         const esp_id = parseInt(especialidadId)
         const [result] = await UsuarioModel.updateAlumnosByProfesorId(profesor_id,alumno_id,esp_id)
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
+        
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -631,17 +561,8 @@ const updateAlumnoByProfesorId = async (req,res) => {
                         <p>Hola!</p>
                         <p>El profesor aceptó la solicitud!</p><p>Ya puedes coordinar una fecha para tu primera clase.</p>
                         </div>
-                    </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-            attachments: [
-                {
-                    filename: 'logo.jpg',
-                    content: imageBuffer,
-                    encoding: imageBase64,
-                    cid: 'logoImage'
-                }
-            ]
+                        <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                        </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -704,9 +625,7 @@ const deleteClaseByProfesorId = async (req, res) => {
         } else if (!fecha) {
             return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
-        const alumno_id = parseInt(alumnoId)
-        const esp_id = parseInt(especialidadId)
-        const [result] = await UsuarioModel.deleteClaseByProfesorIdByClaseId(profesor_id, alumnoId, fecha, esp_id)
+        
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
@@ -740,17 +659,8 @@ const deleteClaseByProfesorId = async (req, res) => {
                         <p>Hola!</p>
                         <p>Se ha cancelado la clase que tenias el ${fecha}.</p>
                         </div>
-                    </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-            attachments: [
-                {
-                    filename: 'logo.jpg',
-                    content: imageBuffer,
-                    encoding: imageBase64,
-                    cid: 'logoImage'
-                }
-            ]
+                        <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                        </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
@@ -780,11 +690,7 @@ const deleteAlumnoByProfesorId = async (req,res) => {
         const alumno_id = parseInt(alumnoId)
         const especialidad_id = parseInt(especialidadId)
         const [result] = await UsuarioModel.deleteAlumnosByProfesorId(profesor_id,alumno_id,especialidad_id)
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
+        
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -813,17 +719,8 @@ const deleteAlumnoByProfesorId = async (req,res) => {
                         <p>Hola!</p>
                         <p>Lamentablemente el profesor rechazó tu solicitud de conexión. Pero no te preocupes! Puedes encontrar otros profesores cerca tuyo.</p><p>Ánimo!</p>
                         </div>
-                    </body>
-                    <img style="width: 300px; height: 100px; float: right;" src="cid:logoImage" alt="Logo" />
-                    </html>`,
-            attachments: [
-                {
-                    filename: 'logo.jpg',
-                    content: imageBuffer,
-                    encoding: imageBase64,
-                    cid: 'logoImage'
-                }
-            ]
+                        <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                        </html>`
         }
         // Enviar el correo electrónico
         transporter.sendMail(mailOptions, (error, info) => {
