@@ -13,14 +13,12 @@ const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
-        const {rol} = req.body
+        const {nombre, apellidos, mail,rol, foto, tel, pxh,experiencia,lat,lon} = req.body
         let result
         // Inserta el usuario en la base de datos
         if (rol=="prof"){
-            const { nombre, apellidos, mail,rol, foto, tel, pxh, experiencia, lat, lon } = req.body
             [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol, foto, tel, pxh, experiencia, lat, lon })
         }else{
-            const { nombre, apellidos, mail,rol } = req.body;
             [result] = await UsuarioModel.insertUsuario({ nombre, apellidos, mail, pass: hashedPassword,rol })
         }
         // Configurar nodemailer con las credenciales de Gmail
