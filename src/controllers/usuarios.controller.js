@@ -565,7 +565,7 @@ const updateUsuario = async (req, res) => {
                 {
                     filename: 'logo.jpg',
                     content: imageBuffer,
-                    encoding: 'base64',
+                    encoding: imageBase64,
                     cid: 'logoImage'
                 }
             ]
