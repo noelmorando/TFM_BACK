@@ -13,6 +13,7 @@ const register = async (req, res) => {
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
+        const {rol} = req.body
         let result
         // Inserta el usuario en la base de datos
         if (rol=="prof"){
