@@ -65,7 +65,7 @@ const register = async (req, res) => {
                         {
                             filename: 'logo.jpg',
                             content: imageBuffer,
-                            encoding: 'base64',
+                            encoding: imageBase64,
                             cid: 'logoImage'
                         }
                     ]
@@ -343,7 +343,7 @@ const insertAlumnoByProfesorId = async (req,res) => {
                         {
                             filename: 'logo.jpg',
                             content: imageBuffer,
-                            encoding: 'base64',
+                            encoding: imageBase64,
                             cid: 'logoImage'
                         }
                     ]
@@ -420,7 +420,7 @@ const insertClaseByProfesor = async (req, res) => {
                 {
                     filename: 'logo.jpg',
                     content: imageBuffer,
-                    encoding: 'base64',
+                    encoding: imageBase64,
                     cid: 'logoImage'
                 }
             ]
@@ -497,7 +497,7 @@ const insertChatByUsersId = async (req, res) => {
                 {
                     filename: 'logo.jpg',
                     content: imageBuffer,
-                    encoding: 'base64',
+                    encoding: imageBase64,
                     cid: 'logoImage'
                 }
             ]
@@ -638,7 +638,7 @@ const updateAlumnoByProfesorId = async (req,res) => {
                 {
                     filename: 'logo.jpg',
                     content: imageBuffer,
-                    encoding: 'base64',
+                    encoding: imageBase64,
                     cid: 'logoImage'
                 }
             ]
@@ -747,7 +747,7 @@ const deleteClaseByProfesorId = async (req, res) => {
                 {
                     filename: 'logo.jpg',
                     content: imageBuffer,
-                    encoding: 'base64',
+                    encoding: imageBase64,
                     cid: 'logoImage'
                 }
             ]
@@ -820,7 +820,7 @@ const deleteAlumnoByProfesorId = async (req,res) => {
                 {
                     filename: 'logo.jpg',
                     content: imageBuffer,
-                    encoding: 'base64',
+                    encoding: imageBase64,
                     cid: 'logoImage'
                 }
             ]
