@@ -33,7 +33,7 @@ const register = async (req, res) => {
             // Opciones del correo electrónico
             const mailOptions = {
                 from: 'unirunir22@gmail.com', 
-                to: 'unirunir22@gmail.com', 
+                to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], 
                 subject: 'Bienvenido a TeacherApp 😊',
                 html: `<html>
                     <head>
@@ -298,7 +298,7 @@ const insertAlumnoByProfesorId = async (req,res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', 
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], 
             subject: 'Nueva solicitud de conexión.',
             html: `<html>
                     <head>
@@ -361,7 +361,7 @@ const insertClaseByProfesor = async (req, res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', //al alumno
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
             subject: 'Nueva clase agendada.',
             html: `<html>
                     <head>
@@ -426,7 +426,7 @@ const insertChatByUsersId = async (req, res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', 
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], 
             subject: 'Nuevo mensaje en el foro.',
             html: `<html>
                     <head>
@@ -482,7 +482,7 @@ const updateUsuario = async (req, res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', //al alumno
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
             subject: `${activo===false ? "Te vamos a extrañar 😔" : "Ya estás dado de alta!"}`,
             html: `<html>
                     <head>
@@ -542,7 +542,7 @@ const updateAlumnoByProfesorId = async (req,res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', //al alumno
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
             subject: 'Solicitud de conexión aceptada.',
             html: `<html>
                     <head>
@@ -640,7 +640,7 @@ const deleteClaseByProfesorId = async (req, res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', //al alumno
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
             subject: 'Clase suspendida.',
             html: `<html>
                     <head>
@@ -700,7 +700,7 @@ const deleteAlumnoByProfesorId = async (req,res) => {
         // Opciones del correo electrónico
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
-            to: 'unirunir22@gmail.com', //al alumno
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
             subject: 'Solicitud de conexión rechazada.',
             html: `<html>
                     <head>
