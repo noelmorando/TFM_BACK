@@ -450,7 +450,7 @@ const updateUsuario = async (req, res) => {
         const { usuarioId } = req.params
         const {activo} = req.body
         const usuario_id = parseInt(usuarioId)
-        req.body.pass == bcrypt.hashSync(req.body.pass, 8);
+        req.body.pass = bcrypt.hashSync(req.body.pass, 8);
         console.log(req.body)
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
