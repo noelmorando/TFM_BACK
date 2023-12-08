@@ -499,6 +499,7 @@ const updateUsuarioForm = async (req, res) => {
         const { usuarioId } = req.params
         const {activo} = req.body
         const usuario_id = parseInt(usuarioId)
+        updatedBody = req.body;
         const updatedPass = req.body.pass            
 
         //¿Coincide la password de la BBDD con la del body(login)
@@ -508,16 +509,15 @@ const updateUsuarioForm = async (req, res) => {
         const equals = bcrypt.compareSync(updatedPass, pass[0].pass);
         
         if (!equals) {
-            return res.json({ fatal: 'Error en email y/o password' });
-        }else
+           return res.json({ fatal: 'Error en email y/o password' }); 
+        } 
+
+        updatedBody.pass = bcrypt.hashSync(updatedPass, 8);
+        
+        const [result] = await UsuarioModel.updateUsuarioById(usuario_id, updatedBody)
         res.status(200).json({
             success: 'Update correcto'
         });
-
-        req.body.pass = bcrypt.hashSync(req.body.pass, 8);
-        
-        const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
-        res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
     }
