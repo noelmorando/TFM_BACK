@@ -453,7 +453,7 @@ const updateUsuario = async (req, res) => {
         req.body.pass = bcrypt.hashSync(req.body.pass, 8);
 
         //¿Coincide la password de la BBDD con la del body(login)
-        const [usuario] = await UsuarioModel.getUsuarioById(usuario_id)
+        const [usuario] = await UsuarioModel.selectUsuarioById(usuario_id)
         const equals = bcrypt.compareSync(req.body.pass, usuario.pass);
         if (!equals) {
             return res.json({ fatal: 'Error en email y/o password' });
@@ -463,7 +463,6 @@ const updateUsuario = async (req, res) => {
             token: createToken(usuario)
         });
         
-
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
