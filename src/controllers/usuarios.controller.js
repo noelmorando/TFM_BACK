@@ -2,7 +2,6 @@ const UsuarioModel = require('../models/usuario.model')
 bcrypt = require('bcryptjs');
 const { createToken } = require('../helpers/utils');
 const nodemailer = require("nodemailer")
-const fs = require('fs')
 /**
  * Recupera todos los usuarios de la base de datos.
  * @param {any} req 
@@ -449,7 +448,20 @@ const updateUsuario = async (req, res) => {
     try {
         const { usuarioId } = req.params
         const {activo} = req.body
-        const usuario_id = parseInt(usuarioId)         
+        const usuario_id = parseInt(usuarioId)
+        req.body.pass = bcrypt.hashSync(req.body.pass, 8);
+
+        //¿Coincide la password de la BBDD con la del body(login)
+        const [usuario] = await UsuarioModel.selectUsuarioById(usuario_id)
+        const equals = bcrypt.compareSync(req.body.pass, usuario.pass);
+        if (!equals) {
+            return res.json({ fatal: 'Error en email y/o password' });
+        }
+        res.status(200).json({
+            success: 'Login correcto!!',
+            token: createToken(usuario)
+        });
+        
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
@@ -631,7 +643,7 @@ const deleteClaseByProfesorId = async (req, res) => {
         } else if (!fecha) {
             return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
-        
+         
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
@@ -741,4 +753,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
