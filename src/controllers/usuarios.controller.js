@@ -252,26 +252,6 @@ const getClasesByUsuariosId = async (req, res) => {
     }
 }
 /**
- * Agrega una especialidad a un profesor cuyo Id es profesorId, tomado de la ruta, y cuyo Id de la especialidad es especialidades_id, tomado del cuerpo de la solicitud.
- * @param {any} req 
- * @param {any} res 
- * @returns any
- */
-const insertEspecialidadByProfesor = async (req, res) => {
-    try {
-        const { profesorId } = req.params
-        const profesor_id = parseInt(profesorId)
-        const { especialidades_id } = req.body
-        if (!especialidades_id) {
-            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado" })
-        }
-        const [result] = await UsuarioModel.insertEspecialidadByProfesorId(profesor_id, especialidades_id)
-        res.status(200).json(result)
-    } catch (error) {
-        res.status(500).json({ fatal: error.message })
-    }
-}
-/**
  * Crea una petición de solicitud para que el profesor acepte al alumno. 
  * @param {any} req 
  * @param {any} res 
@@ -470,6 +450,19 @@ const updateUsuario = async (req, res) => {
         const { usuarioId } = req.params
         const {activo} = req.body
         const usuario_id = parseInt(usuarioId)
+        req.body.pass = bcrypt.hashSync(req.body.pass, 8);
+
+        //¿Coincide la password de la BBDD con la del body(login)
+        const [usuario] = await UsuarioModel.selectUsuarioById(usuario_id)
+        const equals = bcrypt.compareSync(req.body.pass, usuario.pass);
+        if (!equals) {
+            return res.json({ fatal: 'Error en email y/o password' });
+        }
+        res.status(200).json({
+            success: 'Login correcto!!',
+            token: createToken(usuario)
+        });
+        
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
@@ -733,4 +726,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, insertEspecialidadByProfesor, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }

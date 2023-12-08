@@ -49,4 +49,25 @@ const getProfesoresByEspecialidadById = async (req,res) => {
     }
 }
 
-module.exports = {getAllEspecialidades, getEspecialidadesByPage, getProfesoresByEspecialidadById}
+/**
+ * Agrega una especialidad a un profesor cuyo Id es profesorId, tomado de la ruta, y cuyo Id de la especialidad es especialidades_id, tomado del cuerpo de la solicitud.
+ * @param {any} req 
+ * @param {any} res 
+ * @returns any
+ */
+const insertEspecialidadByProfesor = async (req, res) => {
+    try {
+        const { profesorId } = req.params
+        const profesor_id = parseInt(profesorId)
+        const { especialidades_id } = req.body
+        if (!especialidades_id) {
+            return res.status(400).json({ fatal: "ID de la especialidad no proporcionado" })
+        }
+        const [result] = await EspecialidadModel.insertEspecialidadByProfesorId(profesor_id, especialidades_id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
+
+module.exports = {getAllEspecialidades, getEspecialidadesByPage, getProfesoresByEspecialidadById, insertEspecialidadByProfesor}   

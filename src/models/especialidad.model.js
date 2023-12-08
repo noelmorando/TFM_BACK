@@ -24,4 +24,14 @@ const getUsuariosByEspecialidad = (especialidadId, page, limit) => {
    
 }
 
-module.exports = { SelectAllEspecialidades, SelectEspecialidadesByPage, getUsuariosByEspecialidad}
+/**
+ * Agrega una especialidad nueva a un profesor cuyo Id es profesorId, y cuyo Id de la especialidad es especialidadId.
+ * @param {number} profesorId 
+ * @param {number} especialidadId 
+ * @returns any
+ */
+const insertEspecialidadByProfesorId = (profesorId, especialidadId) => {
+    return db.query('INSERT INTO usuarios_has_especialidades (profesor_id, especialidades_id) VALUES (?, ?)',[profesorId,especialidadId])
+}
+
+module.exports = { SelectAllEspecialidades, SelectEspecialidadesByPage, getUsuariosByEspecialidad, insertEspecialidadByProfesorId}
