@@ -122,16 +122,6 @@ const insertAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
     return db.query('INSERT INTO conexion (profesor_id, alumno_id, activo,especialidades_id) VALUES (?, ?, ?,?)',[profesorId,alumnoId,0,especialidadId])
 }
 /**
- * Agrega una especialidad nueva a un profesor cuyo Id es profesorId, y cuyo Id de la especialidad es especialidadId.
- * @param {number} profesorId 
- * @param {number} especialidadId 
- * @returns any
- */
-const insertEspecialidadByProfesorId = (profesorId, especialidadId) => {
-    return db.query('INSERT INTO usuarios_has_especialidades (profesor_id, especialidades_id) VALUES (?, ?)',[profesorId,especialidadId])
-}
-
-/**
  * Agrega una nueva clase de un profesor.
  * @param {number} profesorId 
  * @param {any} param1 
@@ -205,4 +195,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especiali
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
 }
 
-module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, insertEspecialidadByProfesorId,deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion}
+module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion}
