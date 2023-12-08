@@ -615,7 +615,7 @@ const deleteClaseByProfesorId = async (req, res) => {
         } else if (!fecha) {
             return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
-        
+         
         // Ruta de la imagen en tu ordenador
         const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
         // Leer la imagen como un buffer y convertirla a base64
