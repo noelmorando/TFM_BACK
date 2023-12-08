@@ -449,20 +449,7 @@ const updateUsuario = async (req, res) => {
     try {
         const { usuarioId } = req.params
         const {activo} = req.body
-        const usuario_id = parseInt(usuarioId)
-        req.body.pass = bcrypt.hashSync(req.body.pass, 8);
-
-        //¿Coincide la password de la BBDD con la del body(login)
-        const [usuario] = await UsuarioModel.selectUsuarioById(usuario_id)
-        const equals = bcrypt.compareSync(req.body.pass, usuario.pass);
-        if (!equals) {
-            return res.json({ fatal: 'Error en email y/o password' });
-        }
-        res.status(200).json({
-            success: 'Login correcto!!',
-            token: createToken(usuario)
-        });
-        
+        const usuario_id = parseInt(usuarioId)         
         const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
@@ -502,6 +489,34 @@ const updateUsuario = async (req, res) => {
             }
             console.log('Correo electrónico enviado: ' + info.response);
         })
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
+const updateUsuarioForm = async (req, res) => {
+    try {
+        const { usuarioId } = req.params
+        const {activo} = req.body
+        const usuario_id = parseInt(usuarioId)
+        const updatedPass = req.body.pass            
+
+        //¿Coincide la password de la BBDD con la del body(login)
+        const query = 'SELECT pass FROM usuarios WHERE id = ?';
+        const [pass] = await db.query(query, usuario_id);
+       
+        const equals = bcrypt.compareSync(updatedPass, pass[0].pass);
+        
+        if (!equals) {
+            return res.json({ fatal: 'Error en email y/o password' });
+        }else
+        res.status(200).json({
+            success: 'Update correcto'
+        });
+
+        req.body.pass = bcrypt.hashSync(req.body.pass, 8);
+        
+        const [result] = await UsuarioModel.updateUsuarioById(usuario_id, req.body)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -726,4 +741,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
