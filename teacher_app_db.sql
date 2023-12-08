@@ -367,6 +367,7 @@ INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALU
 INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('20', '11', 'Ayuda profe! Esto me está matando.');
 INSERT INTO `teacherapp`.`chat` (`profesor_id`, `alumno_id`, `comentarios`) VALUES ('20', '11', 'Necesitas utilizar las leyes de Newton. https://www.significados.com/leyes-de-newton/ La segunda ley es la que necesitas aplicar.');
 
+INSERT INTO `teacherapp`.`usuarios` (`nombre`, `apellidos`, `mail`, `pass`, `foto`, `rol`, `tel`) VALUES ('Maria', 'Morando', 'mariamorando@gmail.com', '$2a$08$Wnlc/fuiRr2cU9UYr2ZV3.pPziwyqTnqeKrkrgPfsj/8/AAO9mCyq', 'https://pxb.cdn.diariohuarpe.com/huarpe/062020/1593557169978.webp?extw=jpg', 'admin', '659109031');
 
 
 
