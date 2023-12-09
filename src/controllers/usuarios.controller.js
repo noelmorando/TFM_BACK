@@ -463,12 +463,6 @@ const insertOpinionByUserId = async (req, res) => {
   };
   
   
-
-
-
-
-
-
 /**
  * Actualiza los datos de un usuario cuyo Id es usuarioId.
  * @param {any} req 

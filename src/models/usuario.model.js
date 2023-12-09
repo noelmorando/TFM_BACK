@@ -140,7 +140,14 @@ const insertChatByUsersId = (profesorId,{alumno_id,comentarios}) => {
     return db.query('INSERT INTO chat (profesor_id, alumno_id, comentarios) VALUES (?, ?, ?)',[profesorId,alumno_id,comentarios])
 }
 
-
+/**
+ * Inserta un comentario hecho por un alumno con valoración numérica.
+ * @param {number} profesor_id 
+ * @param {number} alumno_id 
+ * @param {number} puntuacion 
+ * @param {string} comentarios 
+ * @returns 
+ */
 const insertRatingByAlumn = (profesor_id, alumno_id, puntuacion, comentarios) => {
     return db.query('INSERT INTO teacherapp.puntuaciones (profesor_id, alumno_id, puntuacion, comentarios) VALUES (?, ?, ?, ?)', [profesor_id, alumno_id, puntuacion, comentarios]);
 }
