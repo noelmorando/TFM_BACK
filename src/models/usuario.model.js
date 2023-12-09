@@ -139,6 +139,14 @@ const insertClaseByProfesorId = (profesorId,{alumno_id, fecha,especialidades_id}
 const insertChatByUsersId = (profesorId,{alumno_id,comentarios}) => {
     return db.query('INSERT INTO chat (profesor_id, alumno_id, comentarios) VALUES (?, ?, ?)',[profesorId,alumno_id,comentarios])
 }
+
+
+const insertRatingByAlumn = (profesor_id, alumno_id, puntuacion, comentarios) => {
+    return db.query('INSERT INTO teacherapp.puntuaciones (profesor_id, alumno_id, puntuacion, comentarios) VALUES (?, ?, ?, ?)', [profesor_id, alumno_id, puntuacion, comentarios]);
+}
+
+
+
 /**
  * Actualiza los datos del usuario.
  * @param {number} id id del usuario
@@ -195,4 +203,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especiali
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
 }
 
-module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion}
+module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion, insertRatingByAlumn}

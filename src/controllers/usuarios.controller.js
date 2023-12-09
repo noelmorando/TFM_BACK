@@ -8,7 +8,6 @@ const nodemailer = require("nodemailer")
  * @param {any} res 
  */
 const register = async (req, res) => {
-    //TODO: AGREGAR LOS DEMAS CAMPOS PARA EL REGISTRO DE PROFESORES.
     try {
         //Encriptamos la password
         const hashedPassword = bcrypt.hashSync(req.body.pass, 8);
@@ -68,7 +67,6 @@ const register = async (req, res) => {
         res.status(500).json({ fatal: error.message });
     }
 };
-
 
 const login = async (req, res) => {
     try {
@@ -438,6 +436,38 @@ const insertChatByUsersId = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+/**
+ * Inserta una opinión con puntuación a un usuario
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const insertOpinionByUserId = async (req, res) => {
+    try {
+      const { profesor_id, alumno_id, puntuacion, comentarios } = req.body;
+  
+      // Validar que profesorId no sea null
+      if (profesor_id === null || profesor_id === undefined) {
+        return res.status(400).json({ error: 'profesorId no puede ser null' });
+      }
+  
+      // Lógica para insertar en la base de datos
+      const result = await UsuarioModel.insertRatingByAlumn(profesor_id, alumno_id, puntuacion, comentarios);
+
+      // Enviar respuesta exitosa
+      res.status(201).json({ message: 'Opinión insertada exitosamente', result });
+    } catch (error) {
+      console.error('Error al insertar opinión:', error);
+      res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  };
+  
+  
+
+
+
+
+
 
 /**
  * Actualiza los datos de un usuario cuyo Id es usuarioId.
@@ -740,4 +770,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId }
