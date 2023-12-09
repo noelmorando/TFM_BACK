@@ -54,11 +54,19 @@ const selectEspecialidadByProfesorId = (profesorId,especialidadId) => {
 }
 
 /**
+ * Recupera las puntuaciones de un profesor con el alumno
+ * @param {number} profesorId 
+ * @returns any
+ */
+const selectPuntuacionesByprofesorId = (profesorId, alumnoId) => {
+    return db.query('SELECT p.* FROM puntuaciones p WHERE p.profesor_id = ? AND p.alumno_id = ?', [profesorId,alumnoId])
+}
+/**
  * Recupera las puntuaciones de un profesor, cuyo Id es profesorId.
  * @param {number} profesorId 
  * @returns any
  */
-const selectPuntuacionesByprofesorId = (profesorId) => {
+const selectPuntuaciones = (profesorId) => {
     return db.query('SELECT p.* FROM puntuaciones p WHERE p.profesor_id = ?', [profesorId])
 }
 
@@ -210,4 +218,4 @@ const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especiali
     return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
 }
 
-module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion, insertRatingByAlumn}
+module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion, insertRatingByAlumn, selectPuntuaciones}

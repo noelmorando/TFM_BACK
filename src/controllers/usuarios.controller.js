@@ -207,9 +207,26 @@ const getChatByUsuariosId = async (req, res) => {
  */
 const getPuntuacionesByProfesorId = async (req, res) => {
     try {
-        const { profesorId } = req.params
+        const { profesorId,alumnoId } = req.params
         const profesor_id = parseInt(profesorId)
-        const [result] = await UsuarioModel.selectPuntuacionesByprofesorId(profesor_id)
+        const alumno_id = parseInt(alumnoId)
+        const [result] = await UsuarioModel.selectPuntuacionesByprofesorId(profesor_id,alumno_id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({ fatal: error.message })
+    }
+}
+/**
+ * Recupera las puntuaciones.
+ * @param {any} req 
+ * @param {any} res 
+ */
+const getPuntuaciones = async (req, res) => {
+    try {
+        const { profesorId,alumnoId } = req.params
+        const profesor_id = parseInt(profesorId)
+        const alumno_id = parseInt(alumnoId)
+        const [result] = await UsuarioModel.selectPuntuaciones(profesor_id)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
@@ -768,4 +785,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId,getPuntuaciones }
