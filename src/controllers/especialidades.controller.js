@@ -57,9 +57,10 @@ const getProfesoresByEspecialidadById = async (req,res) => {
  */
 const insertEspecialidadByProfesor = async (req, res) => {
     try {
-        const { profesorId } = req.params
+        const { profesorId, especialidadId } = req.params
         const profesor_id = parseInt(profesorId)
-        const { especialidades_id } = req.body
+        const especialidades_id = parseInt(especialidadId)
+        
         if (!especialidades_id) {
             return res.status(400).json({ fatal: "ID de la especialidad no proporcionado" })
         }
