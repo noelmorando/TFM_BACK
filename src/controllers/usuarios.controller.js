@@ -547,7 +547,6 @@ const updateUsuarioForm = async (req, res) => {
         const [pass] = await db.query(query, usuario_id);
                
         const equals = bcrypt.compareSync(updatedBody.pass, pass[0].pass);
-        console.log(equals)
         
         if (!equals) {
            return res.json({ fatal: 'Error en email y/o password' }); 
