@@ -248,21 +248,21 @@ INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Info
 INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Cálculo', 'https://media.tutellus.com/libraries/45/01/lib/1370151995235.jpg?size=854x493s&ext=jpg');
 INSERT INTO `teacherapp`.`especialidades` (`especialidad`, `foto`) VALUES ('Música', 'https://concepto.de/wp-content/uploads/2020/03/musica-e1584123209397.jpg');
 
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('16', '15', '4/12/2023', '1');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('17', '14', '5/12/2023', '2');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('18', '13', '6/12/2023', '3');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('19', '12', '7/12/2023', '4');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('20', '11', '8/12/2023', '5');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('21', '10', '9/12/2023', '6');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('22', '9', '10/12/2023', '7');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('23', '8', '11/12/2023', '8');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('24', '7', '12/12/2023', '9');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('25', '6', '13/12/2023', '10');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('26', '5', '14/12/2023', '11');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('27', '4', '15/12/2023', '12');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('28', '3', '16/12/2023', '13');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('29', '2', '17/12/2023', '14');
-INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('30', '1', '18/12/2023', '15');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('16', '15', '4-12-2023', '1');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('17', '14', '5-12-2023', '2');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('18', '13', '6-12-2023', '3');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('19', '12', '7-12-2023', '4');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('20', '11', '8-12-2023', '5');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('21', '10', '9-12-2023', '6');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('22', '9', '10-12-2023', '7');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('23', '8', '11-12-2023', '8');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('24', '7', '12-12-2023', '9');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('25', '6', '13-12-2023', '10');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('26', '5', '14-12-2023', '11');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('27', '4', '15-12-2023', '12');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('28', '3', '16-12-2023', '13');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('29', '2', '17-12-2023', '14');
+INSERT INTO `teacherapp`.`clases` (`profesor_id`, `alumno_id`, `fecha`, `especialidades_id`) VALUES ('30', '1', '18-12-2023', '15');
 
 INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('16', '15', '1', '1');
 INSERT INTO `teacherapp`.`conexion` (`profesor_id`, `alumno_id`, `activo`, `especialidades_id`) VALUES ('16', '14', '0', '2');
