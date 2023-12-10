@@ -666,8 +666,10 @@ const deleteEspecialidadByUsuario = async (req, res) => {
  */
 const deleteClaseByProfesorId = async (req, res) => {
     try {
-        const { profesorId, alumnoId, especialidadId, fecha } = req.params
-        const profesor_id = parseInt(profesorId)
+        const { profesor_id, alumno_id, especialidades_id, fecha } = req.params
+        const profesorId = parseInt(profesor_id)
+        const alumnoId = parseInt(alumno_id)
+        const especialidadId = parseInt(especialidades_id)
         if (!especialidades_id) {
             return res.status(400).json({ fatal: "especialidades_id no proporcionado" })
         } else if (!alumno_id) {
@@ -676,11 +678,6 @@ const deleteClaseByProfesorId = async (req, res) => {
             return res.status(400).json({ fatal: "fecha no proporcionada" })
         }
          
-        // Ruta de la imagen en tu ordenador
-        const imagePath = 'C:/Users/mnoel/OneDrive/Escritorio/TeacherApp/images/logo.jpg';
-        // Leer la imagen como un buffer y convertirla a base64
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -709,7 +706,8 @@ const deleteClaseByProfesorId = async (req, res) => {
                         <p>Hola!</p>
                         <p>Se ha cancelado la clase que tenias el ${fecha}.</p>
                         </div>
-                        <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                        <img style="width: 300px; height: 300px; float: right;" src="<img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                        </html>" alt="Logo" />
                         </html>`
         }
         // Enviar el correo electrónico
@@ -719,6 +717,7 @@ const deleteClaseByProfesorId = async (req, res) => {
             }
             console.log('Correo electrónico enviado: ' + info.response);
         })
+        const result = UsuarioModel.deleteClaseByProfesorIdByClaseId(profesorId,alumnoId,fecha,especialidadId)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
