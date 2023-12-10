@@ -144,7 +144,7 @@ const insertClaseByProfesorId = (profesorId,{alumno_id, fecha,especialidades_id}
  * @param {any} param1  
  * @returns any
  */
-const insertChatByUsersId = (profesorId,{alumno_id,comentarios}) => {
+const insertChatByUsersId = (profesorId,alumno_id,comentarios) => {
     return db.query('INSERT INTO chat (profesor_id, alumno_id, comentarios) VALUES (?, ?, ?)',[profesorId,alumno_id,comentarios])
 }
 

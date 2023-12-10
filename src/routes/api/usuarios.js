@@ -8,7 +8,7 @@ router.get('/:usuarioId', UsuariosController.getUsuarioById);
 router.get('/clases/:usuarioId',checkToken, checkRole(['prof', 'alumn']), UsuariosController.getClasesByUsuarioId);
 router.get('/conexion/:profesorId',checkToken, checkRole(['prof', 'alumn']), UsuariosController.getInfoProfesorByConexion);
 router.get('/especialidades/:profesorId', checkToken, checkRole(['prof','alumn']), UsuariosController.getEspecialidadByProfesorId)
-router.get('/chats/:profesorId&:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
+router.get('/foro/:profesorId&:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
 router.get('/puntuaciones/:profesorId', UsuariosController.getPuntuaciones)
 router.get('/puntuaciones/:profesorId&:alumnoId', UsuariosController.getPuntuacionesByProfesorId)
 router.get('/clases/:profesorId&:alumnoId&:especialidadId', checkToken, checkRole(['prof','alumn']), UsuariosController.getClasesByUsuariosId)
@@ -16,7 +16,7 @@ router.get('/alumnos/:profesorId',checkToken, checkRole(['prof','alumn']), Usuar
 router.post('/register', preAuthMiddleware, UsuariosController.register)
 router.post('/login', preAuthMiddleware, UsuariosController.login)
 router.post('/agenda/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosController.insertClaseByProfesor)
-router.post('/comentario/:profesorId/chats/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
+router.post('/comentario/:profesorId/foro/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
 router.post('/solicitud/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.insertAlumnoByProfesorId)
 router.post('/opinion', checkToken, checkRole(['alumn']), UsuariosController.insertOpinionByUserId)
 router.put('/clases/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.updateAlumnoByProfesorId)

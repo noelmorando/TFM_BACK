@@ -398,17 +398,18 @@ const insertClaseByProfesor = async (req, res) => {
  */
 const insertChatByUsersId = async (req, res) => {
     try {
-        const { profesorId } = req.params
+        const { profesorId,alumnoId } = req.params
         const profesor_id = parseInt(profesorId)
-        const { alumno_id, comentarios } = req.body
-        if (!alumno_id && !comentarios) {
+        const alumno_id = parseInt(alumnoId)
+        const { comentarios } = req.body
+        if (!alumnoId && !comentarios) {
             return res.status(400).json({ fatal: "alumno_id y comentarios no proporcionados" })
         } else if (!alumno_id) {
             return res.status(400).json({ fatal: "alumno_id no proporcionado" })
         } else if (!comentarios) {
-            return res.status(400).json({ fatal: "comentarios no proporcionada" })
+            return res.status(400).json({ fatal: "comentarios no proporcionado" })
         }
-        const [result] = await UsuarioModel.insertChatByUsersId(profesor_id, req.body)
+        const [result] = await UsuarioModel.insertChatByUsersId(profesor_id,alumno_id, comentarios)
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
