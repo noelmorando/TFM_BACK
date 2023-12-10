@@ -724,6 +724,53 @@ const deleteClaseByProfesorId = async (req, res) => {
         res.status(500).json({ fatal: error.message })
     }
 }
+const sendRequest= async (req,res) => {
+    try {
+        const {usuarioId} = req.params
+        const {nombre, apellidos, mail} = req.body
+        console.log(usuarioId)
+        // Configurar nodemailer con las credenciales de Gmail
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'unirunir22@gmail.com', 
+                pass: 'vwdq swox luov icis' 
+            }
+        })
+        // Opciones del correo electrónico
+        const mailOptions = {
+            from: 'unirunir22@gmail.com', 
+            to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
+            subject: 'Solicitud de baja.',
+            html: `<html>
+                    <head>
+                        <style>
+                        .container {
+                            max-width: 1000px;
+                            margin: 0 auto;
+                            padding: 15px;
+                        }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                        <p>Hola!</p>
+                        <p>El usuario ${nombre} ${apellidos} con mail: ${mail} y id: ${usuarioId} ha pedido la baja.</p>
+                        </div>
+                        <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
+                        </html>`
+        }
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Correo electrónico enviado: ' + info.response);
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 /**
  * El profesor rechaza la solicitud de conexión del alumno. El Id del alumno es proporcionado en el cuerpo de la solicitud, mientras que el Id del profesor es proporcionado en la ruta.
  * @param {any} req 
@@ -785,4 +832,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId,getPuntuaciones }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId,getPuntuaciones,sendRequest }

@@ -7,7 +7,6 @@ const SelectAllUsuarios = (page, limit) => {
     return db.query('select * from usuarios');
 }
 
-
 /**
  * Recupera todos los usuarios de la DB con paginado.
  * @returns any

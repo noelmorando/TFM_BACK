@@ -19,6 +19,7 @@ router.post('/agenda/:profesorId/clases', checkToken, checkRole(['prof']), Usuar
 router.post('/comentario/:profesorId/foro/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
 router.post('/solicitud/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.insertAlumnoByProfesorId)
 router.post('/opinion', checkToken, checkRole(['alumn']), UsuariosController.insertOpinionByUserId)
+router.post('/:usuarioId',UsuariosController.sendRequest)
 router.put('/clases/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.updateAlumnoByProfesorId)
 router.put("/:usuarioId", checkToken, UsuariosController.updateUsuario)
 router.put("/form/:usuarioId", checkToken, UsuariosController.updateUsuarioForm)
