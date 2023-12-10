@@ -666,7 +666,8 @@ const deleteEspecialidadByUsuario = async (req, res) => {
  */
 const deleteClaseByProfesorId = async (req, res) => {
     try {
-        const { profesor_id, alumno_id, especialidades_id, fecha } = req.params
+        const { profesor_id, alumno_id, especialidades_id} = req.params
+        const {fecha} = req.body
         const profesorId = parseInt(profesor_id)
         const alumnoId = parseInt(alumno_id)
         const especialidadId = parseInt(especialidades_id)
@@ -717,7 +718,7 @@ const deleteClaseByProfesorId = async (req, res) => {
             }
             console.log('Correo electrónico enviado: ' + info.response);
         })
-        const result = UsuarioModel.deleteClaseByProfesorIdByClaseId(profesorId,alumnoId,fecha,especialidadId)
+        const result = UsuarioModel.deleteClaseByProfesorIdByClaseId(profesorId,alumnoId,especialidadId,fecha)
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
