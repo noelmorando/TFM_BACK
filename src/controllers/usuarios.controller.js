@@ -94,6 +94,18 @@ const login = async (req, res) => {
         res.status(500).json({ fatal: error.message });
     }
 };
+
+const insertFirstClase = async (req,res) => {
+    const { profesorId } = req.params
+    const profesor_id = parseInt(profesorId)
+    const { alumno_id, especialidades_id } = req.body
+    try {
+        const [result] = await UsuarioModel.createConexion(profesor_id,{alumno_id,especialidades_id})
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json({fatal: error.message})
+    }
+}
 /**
  * Recupera todos los usuarios.
  * @param {any} req 
@@ -826,4 +838,4 @@ const deleteAlumnoByProfesorId = async (req,res) => {
     }
 }
 
-module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId,getPuntuaciones,sendRequest }
+module.exports = { getAllUsuarios, getAllUsuariosByPage, updateUsuario, updateUsuarioForm, deleteUsuario, getUsuarioById, getClasesByUsuarioId, getEspecialidadByProfesorId, getChatByUsuariosId, getPuntuacionesByProfesorId, getAlumnosByProfesorId, getClasesByUsuariosId, deleteEspecialidadByUsuario, deleteClaseByProfesorId, insertClaseByProfesor, insertChatByUsersId, login, register,insertAlumnoByProfesorId,updateAlumnoByProfesorId,deleteAlumnoByProfesorId,getInfoProfesorByConexion, insertOpinionByUserId,getPuntuaciones,sendRequest,insertFirstClase }

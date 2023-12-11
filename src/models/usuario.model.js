@@ -31,7 +31,7 @@ const selectUsuarioById = (usuarioId) => {
  * @returns any
  */
 const selectChatByUsuariosId = (profesorId, alumnoId) => {
-    return db.query('SELECT * FROM chat WHERE profesor_id = ? AND alumno_id = ?', [profesorId, alumnoId])
+    return db.query('SELECT * FROM foro WHERE profesor_id = ? AND alumno_id = ?', [profesorId, alumnoId])
 }
 
 /**
@@ -137,6 +137,9 @@ const insertAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
 const insertClaseByProfesorId = (profesorId,{alumno_id, fecha,especialidades_id}) => {
     return db.query ('INSERT INTO clases (profesor_id, alumno_id, fecha, especialidades_id) VALUES (?, ?, ?, ?)',[profesorId,alumno_id,fecha,especialidades_id])
 }
+const createConexion = (profesorId,{alumno_id,especialidades_id}) => {
+    return db.query ('INSERT INTO clases (profesor_id, alumno_id, especialidades_id) VALUES (?, ?, ?)',[profesorId,alumno_id,especialidades_id])
+}
 /**
  * Agrega un comentario al chat.
  * @param {number} profesorId 
@@ -144,7 +147,7 @@ const insertClaseByProfesorId = (profesorId,{alumno_id, fecha,especialidades_id}
  * @returns any
  */
 const insertChatByUsersId = (profesorId,alumno_id,comentarios) => {
-    return db.query('INSERT INTO chat (profesor_id, alumno_id, comentarios) VALUES (?, ?, ?)',[profesorId,alumno_id,comentarios])
+    return db.query('INSERT INTO foro (profesor_id, alumno_id, comentarios) VALUES (?, ?, ?)',[profesorId,alumno_id,comentarios])
 }
 
 /**
@@ -216,4 +219,4 @@ const deleteClaseByProfesorIdByClaseId = (id) => {
     return db.query("DELETE FROM clases WHERE id =?",[id])
 }
 
-module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion, insertRatingByAlumn, selectPuntuaciones}
+module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion, insertRatingByAlumn, selectPuntuaciones,createConexion}

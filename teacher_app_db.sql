@@ -52,9 +52,9 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `teacherapp`.`chat`
+-- Table `teacherapp`.`foro`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `teacherapp`.`chat` (
+CREATE TABLE IF NOT EXISTS `teacherapp`.`foro` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,

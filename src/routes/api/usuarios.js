@@ -17,6 +17,7 @@ router.get('/alumnos/:profesorId',checkToken, checkRole(['prof','alumn']), Usuar
 router.post('/register', preAuthMiddleware, UsuariosController.register)
 router.post('/login', preAuthMiddleware, UsuariosController.login)
 router.post('/agenda/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosController.insertClaseByProfesor)
+router.post('/firstClass/:profesorId/clases', checkToken, checkRole(['prof']), UsuariosController.insertFirstClase)
 router.post('/comentario/:profesorId/foro/:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.insertChatByUsersId)
 router.post('/solicitud/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.insertAlumnoByProfesorId)
 router.post('/opinion', checkToken, checkRole(['alumn']), UsuariosController.insertOpinionByUserId)
