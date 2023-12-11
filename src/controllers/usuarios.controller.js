@@ -700,8 +700,7 @@ const deleteClaseByProfesorId = async (req, res) => {
                         <p>Hola!</p>
                         <p>Se ha cancelado la clase agendada con el profesor.</p>
                         </div>
-                        <img style="width: 300px; height: 300px; float: right;" src="<img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
-                        </html>" alt="Logo" />
+                        <img style="width: 300px; height: 300px; float: right;" src="<img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />" alt="Logo" />
                         </html>`
         }
         // Enviar el correo electrónico

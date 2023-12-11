@@ -9,9 +9,10 @@ router.get('/clases/:usuarioId',checkToken, checkRole(['prof', 'alumn']), Usuari
 router.get('/conexion/:profesorId',checkToken, checkRole(['prof', 'alumn']), UsuariosController.getInfoProfesorByConexion);
 router.get('/especialidades/:profesorId', checkToken, checkRole(['prof','alumn']), UsuariosController.getEspecialidadByProfesorId)
 router.get('/foro/:profesorId&:alumnoId', checkToken, checkRole(['prof', 'alumn']), UsuariosController.getChatByUsuariosId)
+router.get('/clases/:profesorId&:alumnoId&:especialidadId', checkToken, checkRole(['prof','alumn']), UsuariosController.getClasesByUsuariosId)
 router.get('/puntuaciones/:profesorId', UsuariosController.getPuntuaciones)
 router.get('/puntuaciones/:profesorId&:alumnoId', UsuariosController.getPuntuacionesByProfesorId)
-router.get('/clases/:profesorId&:alumnoId&:especialidadId', checkToken, checkRole(['prof','alumn']), UsuariosController.getClasesByUsuariosId)
+
 router.get('/alumnos/:profesorId',checkToken, checkRole(['prof','alumn']), UsuariosController.getAlumnosByProfesorId)
 router.post('/register', preAuthMiddleware, UsuariosController.register)
 router.post('/login', preAuthMiddleware, UsuariosController.login)
