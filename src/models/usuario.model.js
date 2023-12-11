@@ -208,13 +208,12 @@ const deleteAlumnosByProfesorId = (profesorId,alumnoId,especialidadId) => {
 }
 /**
  * Elimina una clase de un profesor.
- * @param {number} profesorId 
- * @param {number} alumnoId 
- * @param {string} fecha 
+ * @param {number} id 
  * @returns any
  */
-const deleteClaseByProfesorIdByClaseId = (profesorId, alumnoId, fecha, especialidades_id) => {
-    return db.query("DELETE FROM clases WHERE profesor_id = ? AND alumno_id = ? AND fecha = ? AND especialidades_id =?",[profesorId,alumnoId,fecha,especialidades_id])
+const deleteClaseByProfesorIdByClaseId = (id) => {
+    console.log("model",id)
+    return db.query("DELETE FROM clases WHERE id =?",[id])
 }
 
 module.exports = {SelectAllUsuarios, SelectAllUsuariosByPage, updateUsuarioById,deleteUsuarioById, insertUsuario, selectUsuarioById, selectEspecialidadesByProfesorId, selectChatByUsuariosId,selectPuntuacionesByprofesorId, selectAlumnosByprofesorId, selectClasesByUsuariosId, selectClasesByUsuarioId, deleteEspecialidadByUsuarioById,selectEspecialidadByProfesorId,deleteClaseByProfesorIdByClaseId,insertClaseByProfesorId,insertChatByUsersId,insertAlumnosByProfesorId,deleteAlumnosByProfesorId,updateAlumnosByProfesorId,selectProfesorByConexion, insertRatingByAlumn, selectPuntuaciones}

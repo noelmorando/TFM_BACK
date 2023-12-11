@@ -24,8 +24,8 @@ router.put('/clases/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole
 router.put("/:usuarioId", checkToken, UsuariosController.updateUsuario)
 router.put("/form/:usuarioId", checkToken, UsuariosController.updateUsuarioForm)
 //pendiente
+router.delete('/clases/:id', checkToken, checkRole(['prof','alumn']), UsuariosController.deleteClaseByProfesorId)
 router.delete('/especialidades/:profesorId&:especialidadId', checkToken, checkRole(['prof']), UsuariosController.deleteEspecialidadByUsuario)
-router.delete('/clases/:profesorId&:alumnoId&:especialidadId&:fecha', checkToken, checkRole(['prof']), UsuariosController.deleteClaseByProfesorId)
 router.delete('/conexion/:profesorId&:alumnoId&:especialidadId',checkToken, checkRole(['prof','alumn']), UsuariosController.deleteAlumnoByProfesorId)
 
 module.exports = router;

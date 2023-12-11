@@ -666,19 +666,12 @@ const deleteEspecialidadByUsuario = async (req, res) => {
  */
 const deleteClaseByProfesorId = async (req, res) => {
     try {
-        const { profesor_id, alumno_id, especialidades_id} = req.params
-        const {fecha} = req.body
-        const profesorId = parseInt(profesor_id)
-        const alumnoId = parseInt(alumno_id)
-        const especialidadId = parseInt(especialidades_id)
-        if (!especialidades_id) {
-            return res.status(400).json({ fatal: "especialidades_id no proporcionado" })
-        } else if (!alumno_id) {
-            return res.status(400).json({ fatal: "alumno_id no proporcionado" })
-        } else if (!fecha) {
-            return res.status(400).json({ fatal: "fecha no proporcionada" })
-        }
-         
+        const {id} = req.params
+        console.log("controller")
+        ID = parseInt(id)
+        if (!id) {
+            return res.status(400).json({ fatal: "id no proporcionado" })
+        }         
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -705,7 +698,7 @@ const deleteClaseByProfesorId = async (req, res) => {
                     <body>
                         <div class="container">
                         <p>Hola!</p>
-                        <p>Se ha cancelado la clase que tenias el ${fecha}.</p>
+                        <p>Se ha cancelado la clase agendada con el profesor.</p>
                         </div>
                         <img style="width: 300px; height: 300px; float: right;" src="<img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
                         </html>" alt="Logo" />
@@ -718,7 +711,7 @@ const deleteClaseByProfesorId = async (req, res) => {
             }
             console.log('Correo electrónico enviado: ' + info.response);
         })
-        const result = UsuarioModel.deleteClaseByProfesorIdByClaseId(profesorId,alumnoId,especialidadId,fecha)
+        const result = await UsuarioModel.deleteClaseByProfesorIdByClaseId(ID);
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ fatal: error.message })
