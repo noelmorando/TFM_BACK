@@ -719,7 +719,7 @@ const deleteClaseByProfesorId = async (req, res) => {
 const sendRequest= async (req,res) => {
     try {
         const {usuarioId} = req.params
-        const {nombre, apellidos, mail} = req.body
+        const {nombre, apellidos, mail, activo} = req.body
         console.log(usuarioId)
         // Configurar nodemailer con las credenciales de Gmail
         const transporter = nodemailer.createTransport({
@@ -733,7 +733,7 @@ const sendRequest= async (req,res) => {
         const mailOptions = {
             from: 'unirunir22@gmail.com', 
             to: ['unirunir22@gmail.com', 'adrianvicaria@gmail.com', 'maraltaba@hotmail.com', 'apicosala@gmail.com','New-neko@hotmail.com'], //al alumno
-            subject: 'Solicitud de baja.',
+            subject: activo === 0 ? 'Solicitud de Alta' : 'Solicitud de Baja',
             html: `<html>
                     <head>
                         <style>
@@ -747,7 +747,9 @@ const sendRequest= async (req,res) => {
                     <body>
                         <div class="container">
                         <p>Hola!</p>
-                        <p>El usuario ${nombre} ${apellidos} con mail: ${mail} y id: ${usuarioId} ha pedido la baja.</p>
+                        ${activo === 0 ? 
+                            `<p>El usuario ${nombre} ${apellidos} con mail: ${mail} y id: ${usuarioId} ha pedido el alta nuevamente.</p>` : 
+                            `<p>El usuario ${nombre} ${apellidos} con mail: ${mail} y id: ${usuarioId} ha pedido la baja.</p>`}
                         </div>
                         <img style="width: 300px; height: 300px; float: right;" src="https://media.licdn.com/dms/image/C4D0BAQFnjt7j0rjCmg/company-logo_200_200/0/1631335908449?e=2147483647&v=beta&t=dUlVE-1rRwiQSRJt4Yvam1Eg9hK-OVJ7X07lMsfZzMU" alt="Logo" />
                         </html>`
