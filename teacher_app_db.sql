@@ -52,9 +52,9 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `teacherapp`.`foro`
+-- Table `teacherapp`.`chat`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `teacherapp`.`foro` (
+CREATE TABLE IF NOT EXISTS `teacherapp`.`chat` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `teacherapp`.`clases` (
   `profesor_id` INT NOT NULL,
   `alumno_id` INT NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
-  `fecha` VARCHAR(10) NOT NULL,
+  `fecha` VARCHAR(27) NOT NULL DEFAULT 'Coordina tu primera clase!',
   `especialidades_id` INT NOT NULL,
   INDEX `fk_usuarios_has_usuarios_usuarios6_idx` (`alumno_id` ASC),
   INDEX `fk_usuarios_has_usuarios_usuarios5_idx` (`profesor_id` ASC),
